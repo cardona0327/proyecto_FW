@@ -1,0 +1,665 @@
+ <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown link
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+ </nav> -->
+ 
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">FASHION WORLD</a>
+          <div class="nav-collapse collapse" style="height: 0px;">
+            <ul class="nav">
+              
+              <li><a href="controlad.php?parte=parte1">productos</a></li>
+            
+    
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </body>
+         
+    public static function verificar($doc, $co) {
+      $salida = '';
+      $conexion = mysqli_connect('localhost', 'root', '', 'pruebita');
+      $sql = "SELECT COUNT(*) FROM tb_usuarios WHERE documento = '$doc' AND contraseña = '$co'";
+      $consulta = $conexion->query($sql);
+      
+      if ($consulta->num_rows > 0) {
+          while ($fila = $consulta->fetch_assoc()) {
+              $salida .= $fila['documento'];
+          }
+      }
+      
+      $conexion->close();
+      return $salida;
+  }
+  
+    
+    
+  public static function verificar($doc, $co) {
+    $salida = '';
+    $conexion = mysqli_connect('localhost', 'root', '', 'pruebita');
+    $sql = "SELECT COUNT(*) FROM tb_usuarios WHERE documento = '$doc' AND contraseña = '$co'";
+    $consulta = $conexion->query($sql);
+    
+    if ($consulta->num_rows > 0) {
+        while ($fila = $consulta->fetch_assoc()) {
+            if(isset($fila['documento'])) {
+                $salida .= $fila['documento'];
+            }
+        }
+    }
+    
+    $conexion->close();
+    return $salida;
+}
+
+
+public static function verificar($doc, $co) {
+  $salida = "";
+  $conexion = mysqli_connect('localhost', 'root', '', 'pruebita');
+  $sql = "SELECT * FROM tb_usuarios WHERE documento = '$doc' AND contraseña = '$co'";
+  $consulta = $conexion->query($sql);
+  
+  while ($fila = $consulta->fetch_assoc()) {
+      $salida .= "hola " . $fila['documento']; // Cambia 'documento' por el nombre correcto de la columna
+  }
+  
+  $conexion->close();
+  return $salida;
+}
+<body>
+  <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
+    <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #CAA7FE;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">FASHION WORLD</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          ver
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Categorías</a></li>
+            <li><a class="dropdown-item" href="controlador.php?seccion=seccion9">contar usuarios</a></li>
+            <li><a class="dropdown-item" href="#">contabilidad</a></li>
+            <li><a class="dropdown-item" href="#">organizar fechas</a></li>
+            <li><a class="dropdown-item" href="">pedidos</a></li>
+            <li><a class="dropdown-item" href="">actualizar</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion3.php">regresar</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        
+</body>
+            
+
+<head>
+  <title><?php echo "administrador" ?></title>
+</head>
+<br><div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  buscar usuarios por 
+</button>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  <li><a class="dropdown-item" href="#">nombre</a></li>
+  <li><a class="dropdown-item" href="#">documento</a></li>
+  <li><a class="dropdown-item" href="#">fecha de nacimiento</a></li>
+</ul>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agregar Producto</title>
+<style>
+  .preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .preview img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 20px;
+  }
+</style>
+</head>
+<body>
+
+
+<script>
+function updatePreview(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  preview.textContent = input.value;
+}
+
+function previewImage(input, previewId) {
+  const preview = document.getElementById(previewId);
+  const file = input.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+  }
+
+  reader.readAsDataURL(file);
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Preview</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="card" style="width: 18rem;">
+    <img src="product-image.jpg" class="card-img-top" alt="Product Image">
+    <div class="card-body">
+      <h5 class="card-title">Product Name</h5>
+      <p class="card-text">Product Description</p>
+      <p class="card-text">$100</p>
+      <a href="#" class="btn btn-primary">Add to Cart</a>
+    </div>
+  </div>
+</body>
+</html>
+<?php
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "nombre_de_tu_base_de_datos";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+  die("Error en la conexión: " . $conn->connect_error);
+}
+
+// Datos del producto
+$product_name = "Nombre del Producto";
+$product_description = "Descripción del Producto";
+$product_price = 100; // Precio del Producto
+
+// Consulta SQL para insertar los datos del producto
+$sql = "INSERT INTO productos (nombre, descripcion, precio) VALUES ('$product_name', '$product_description', $product_price)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Producto agregado correctamente a la base de datos";
+} else {
+  echo "Error al agregar el producto: " . $conn->error;
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>
+<?php
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "nombre_de_tu_base_de_datos";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+  die("Error en la conexión: " . $conn->connect_error);
+}
+
+// Recuperar los datos del formulario
+$nombre = $_POST['nombre'];
+$id = $_POST['id'];
+$categoria = $_POST['categoria'];
+$imagen = $_FILES['imagen']['name']; // Nombre de la imagen subida
+
+// Mover la imagen a una carpeta en el servidor
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file);
+
+// Consulta SQL para insertar los datos del producto en la base de datos
+$sql = "INSERT INTO productos (nombre, id, categoria, imagen) VALUES ('$nombre', '$id', '$categoria', '$imagen')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Producto agregado correctamente a la base de datos";
+} else {
+  echo "Error al agregar el producto: " . $conn->error;
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto</title>
+</head>
+<body>
+  <h1>Agregar Producto</h1> 
+  <form action="guardar_producto.php" method="post" enctype="multipart/form-data">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" onkeyup="updatePreview('nombre', 'nombre_preview')"><br><br>
+
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id" onkeyup="updatePreview('id', 'id_preview')"><br><br>
+
+    <label for="categoria">Categoría:</label><br>
+    <input type="text" id="categoria" name="categoria" onkeyup="updatePreview('categoria', 'categoria_preview')"><br><br>
+
+    <label for="imagen">Imagen:</label><br>
+    <input type="file" id="imagen" name="imagen" onchange="previewImage(this, 'imagen_preview')"><br><br>
+
+    <div class="preview">
+      <img id="imagen_preview" src="#" alt="Vista previa de la imagen">
+      <div id="nombre_preview"></div>
+      <div id="id_preview"></div>
+      <div id="categoria_preview"></div>
+    </div>
+
+    <input type="submit" value="Agregar Producto">
+  </form>
+</body>
+</html>
+
+<?php
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "nombre_de_tu_base_de_datos";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Error en la conexión: " . $conn->connect_error);
+}
+
+$nombre = $_POST['nombre'];
+$id = $_POST['id'];
+$categoria = $_POST['categoria'];
+$imagen = $_FILES['imagen']['name'];
+
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file);
+
+$sql = "INSERT INTO productos (nombre, id, categoria, imagen) VALUES ('$nombre', '$id', '$categoria', '$imagen')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Producto agregado correctamente a la base de datos";
+} else {
+  echo "Error al agregar el producto: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto</title>
+  <style>
+    .card {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Agregar Producto</h1>
+    <form action="guardar_producto.php" method="post" enctype="multipart/form-data">
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" onkeyup="updatePreview('nombre', 'nombre_preview')"><br><br>
+  
+      <label for="id">ID:</label><br>
+      <input type="text" id="id" name="id" onkeyup="updatePreview('id', 'id_preview')"><br><br>
+  
+      <label for="categoria">Categoría:</label><br>
+      <input type="text" id="categoria" name="categoria" onkeyup="updatePreview('categoria', 'categoria_preview')"><br><br>
+  
+      <label for="imagen">Imagen:</label><br>
+      <input type="file" id="imagen" name="imagen" onchange="previewImage(this, 'imagen_preview')"><br><br>
+  
+      <div class="preview">
+        <img id="imagen_preview" src="#" alt="Vista previa de la imagen">
+        <div id="nombre_preview"></div>
+        <div id="id_preview"></div>
+        <div id="categoria_preview"></div>
+      </div>
+  
+      <input type="submit" value="Agregar Producto">
+    </form>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto</title>
+  <style>
+    .card {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px 10px 0 0;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="placeholder-image.jpg" alt="Producto" class="product-image">
+    <div class="card-content">
+      <h2>Agregar Producto</h2>
+      <form action="guardar_producto.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input type="text" id="precio" name="precio">
+        </div>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+        <input type="submit" value="Agregar Producto">
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto</title>
+  <style>
+    .card {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .image-preview {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+      display: none;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="image-preview">
+      <img id="preview" src="#" alt="Vista previa de la imagen">
+    </div>
+    <div class="card-content">
+      <h2>Agregar Producto</h2>
+      <form action="guardar_producto.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input type="text" id="precio" name="precio">
+        </div>
+        <input type="file" id="imagen" name="imagen" accept="image/*" onchange="previewImage()">
+        <input type="submit" value="Agregar Producto">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function previewImage() {
+      const preview = document.querySelector('#preview');
+      const file = document.querySelector('input[type=file]').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', function() {
+        preview.src = reader.result;
+        preview.style.display = 'block';
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
+
+<?php
+class Database {
+    public static function insertData() {
+        // Establecer la conexión con la base de datos
+        $servername = "nombre_del_servidor";
+        $username = "nombre_de_usuario";
+        $password = "contraseña";
+        $dbname = "nombre_de_la_base_de_datos";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Verificar la conexión
+        if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+        }
+
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+
+        // Insertar los datos en la base de datos
+        $sql = "INSERT INTO nombre_de_la_tabla (nombre, descripcion, precio) VALUES ('$nombre', '$descripcion', '$precio')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Datos insertados correctamente";
+        } else {
+            echo "Error al insertar datos: " . $conn->error;
+        }
+
+        // Cerrar la conexión
+        $conn->close();
+    }
+}
+
+// Llamar a la función estática para insertar datos
+Database::insertData();
+?>
+
+public static function mostrarPro() {
+    include "conexion.php";
+    
+    $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos ORDER BY nombre_producto ASC";
+    $result = $conexion->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Mostrar los datos de los productos y sus imágenes
+        while ($row = $result->fetch_assoc()) {
+            echo "ID: " . $row['id_producto'] . "<br>";
+            echo "Nombre: " . $row['nombre_producto'] . "<br>";
+            echo "Precio: " . $row['precio'] . "<br>";
+            echo "Cantidad: " . $row['cantidad'] . "<br>";
+            echo "Detalles: " . $row['detalles'] . "<br>";
+            echo "ID Categoría: " . $row['id_categoría'] . "<br>";
+            
+            // Mostrar la imagen
+            echo "Imagen: <br>";
+            echo '<img src="data:image/jpeg;base64,'.base64_encode($row['imagen']).'"/><br><br>';
+        }
+    } else {
+        echo "No se encontraron productos.";
+    }
+
+    $conexion->close();
+}
+
+public static function verificar($doc, $co) {
+        include "conexion.php";
+        $salida = "";
+        $sql = "SELECT * FROM tb_usuarios WHERE documento = '$doc' AND contraseña = '$co'";
+        $consulta = $conexion->query($sql);
+        
+        if($fila = $consulta->fetch_assoc()) {
+            $salida .= "hola " . $fila['nombre']; 
+        }else{
+            $salida.="no estas registrado";
+        }
+        
+        $conexion->close();
+        return $salida;
+    }
+
+
+
+
+
+
+

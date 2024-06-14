@@ -80,23 +80,20 @@ class login{
     
     public static function mostrarPro() {
         include "conexion.php";
-        
-        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos ORDER BY nombre_producto ASC";
-        $result = $conexion->query($sql);
     
-        if ($result->num_rows > 0) {
-            
-            while ($row = $result->fetch_assoc()) {
-                echo "ID: " . $row['id_producto'] . "<br>";
+        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos";
+        $resultado = $conexion->query($sql);
+    
+        if ($resultado->num_rows > 0) {
+            while ($row = $resultado->fetch_assoc()) {
+                echo "ID Producto: " . $row['id_producto'] . "<br>";
                 echo "Nombre: " . $row['nombre_producto'] . "<br>";
                 echo "Precio: " . $row['precio'] . "<br>";
                 echo "Cantidad: " . $row['cantidad'] . "<br>";
                 echo "Detalles: " . $row['detalles'] . "<br>";
                 echo "ID Categoría: " . $row['id_categoría'] . "<br>";
-                
-                
                 echo "Imagen: <br>";
-                echo '<img src="data:image/jpeg;base64,'.base64_encode($row['imagen']).'"/><br><br>';
+                echo '<img src="data:image/jpeg;base64,' . $row['imagen'] . '"/><br><br>';
             }
         } else {
             echo "No se encontraron productos.";
@@ -104,7 +101,35 @@ class login{
     
         $conexion->close();
     }
+
+    
+    
+    
+    public static function eliminarPro($id) {
+        include "conexion.php";
+    
+        $sql = "DELETE FROM  tb_productos WHERE id_producto = $id";
+        $resultado = $conexion->query($sql);
+    
+        if($resultado){
+            return "se ha eliminado el producto correctamente";
+        }
+    }
+
+    public static function AgregarCategoria($id_categoria,$categoria) {
+        include "conexion.php";
+    
+        $sql = "INSERT INTO tb_categoria(id_categoría,categoria) VALUE($id_categoria,$categoria); ";
+        $resultado = $conexion->query($sql);
+    
+        if($resultado){
+            header("location:controlad.php?parte=parte9");
+        }
+    }
+
+
 }
+
 
 
 

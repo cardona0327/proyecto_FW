@@ -656,6 +656,72 @@ public static function verificar($doc, $co) {
         $conexion->close();
         return $salida;
     }
+--------------------------------------código de ahora--------------------------------------------------------------
+    public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $id_categoria, $imagen) {
+    include "conexion.php";
+    
+    // Convertir la imagen a base64
+    $imagen_base64 = base64_encode(file_get_contents($imagen['tmp_name']));
+    
+    $sql = "INSERT INTO tb_productos (id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen) VALUES ('$id_pro', '$nombre', '$precio', '$cantidad', '$descripcion', '$id_categoria', '$imagen_base64')";
+    
+    $consulta = $conexion->query($sql);
+    
+    if ($consulta) {
+        header("location: controlad.php?parte=parte4");
+    }
+    
+    $conexion->close();
+}
+
+<!-- En el archivo donde deseas mostrar las imágenes -->
+<?php
+include "conexion.php";
+
+$sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos ORDER BY nombre_producto ASC";
+$resultado = $conexion->query($sql);
+
+if ($resultado->num_rows > 0) {
+    while ($row = $resultado->fetch_assoc()) {
+        echo "ID_producto: " . $row['id_producto'] . "<br>";
+        echo "Nombre: " . $row['nombre_producto'] . "<br>";
+        echo "Precio: " . $row['precio'] . "<br>";
+        echo "Cantidad: " . $row['cantidad'] . "<br>";
+        echo "Detalles: " . $row['detalles'] . "<br>";
+        echo "ID Categoría: " . $row['id_categoría'] . "<br>";
+        
+        echo "Imagen: <br>";
+        echo '<img src="data:image/jpeg;base64,' . $row['imagen'] . '"/><br><br>';
+    }
+} else {
+    echo "No se encontraron productos.";
+}
+
+$conexion->close();
+?>
+public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $id_categoria, $imagen) {
+    include "conexion.php";
+
+    // Verificar si se ha subido un archivo
+    if(isset($imagen) && $imagen['error'] === UPLOAD_ERR_OK) {
+        // Convertir la imagen a base64
+        $imagen_base64 = base64_encode(file_get_contents($imagen['tmp_name']));
+
+        $sql = "INSERT INTO tb_productos (id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen) VALUES ('$id_pro', '$nombre', '$precio', '$cantidad', '$descripcion', '$id_categoria', '$imagen_base64')";
+
+        $consulta = $conexion->query($sql);
+
+        if ($consulta) {
+            header("location: controlad.php?parte=parte4");
+        }
+    } else {
+        echo "Error al subir la imagen.";
+    }
+
+    $conexion->close();
+}
+
+
 
 
 

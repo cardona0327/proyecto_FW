@@ -1,16 +1,31 @@
 <head>
-    <title><?php echo "Saludo" ?></title>
+    <title><?php echo"saludo"; ?></title>
 </head>
-<div class="row">
-  <div class="span4">
-    <h2>bienvenido</h2>
-  </div>
+<?php
+if(!isset($_SESSION)) session_start();
+if(!isset($_SESSION['documento']) || $_SESSION['documento'] === '') {
+    header("location: out.html");
+    exit; // Asegúrate de salir del script después de redirigir
+}
+$documento = $_SESSION['documento']; // Guarda el nombre de usuario en una variable
+?>
 
-  <div class="span4">
-    <h2>cómo estás</h2>
-  </div>
+<!DOCTYPE html>
+<html lang="es">
 
-  <div class="span4">
-    <h2>amigo.</h2>
-  </div>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <style>
+        h1 {
+            color: black;
+        } 
+    </style>
+</head>
+
+<body>
+    <h1><center>Bienvenid@ <?php echo $documento; ?></center></h1> <!-- Imprime el nombre del usuario -->
+</body>
+
+</html>

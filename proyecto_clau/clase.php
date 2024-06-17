@@ -84,8 +84,11 @@ class login{
         $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos";
         $resultado = $conexion->query($sql);
     
+        echo '<div class="productos-container">';
+    
         if ($resultado->num_rows > 0) {
             while ($row = $resultado->fetch_assoc()) {
+                echo '<div class="producto">';
                 echo "ID Producto: " . $row['id_producto'] . "<br>";
                 echo "Nombre: " . $row['nombre_producto'] . "<br>";
                 echo "Precio: " . $row['precio'] . "<br>";
@@ -93,15 +96,28 @@ class login{
                 echo "Detalles: " . $row['detalles'] . "<br>";
                 echo "ID Categoría: " . $row['id_categoría'] . "<br>";
                 echo "Imagen: <br>";
-                echo '<img src="data:image/jpeg;base64,' . $row['imagen'] . '"/><br><br>';
+    
+                // Verificar si la ruta de la imagen no está vacía
+                if (!empty($row['imagen'])) {
+                    // Construir la ruta relativa de la imagen
+                    $rutaImagen = "imagenes/" . $row['imagen'];
+                    
+                    // Mostrar la imagen
+                    echo '<img src="'.$rutaImagen.'" alt="Imagen" class="producto-imagen"><br>';
+                } else {
+                    echo "No se encontró ninguna imagen para este producto.<br>";
+                }
+    
+                echo '</div>';
             }
         } else {
             echo "No se encontraron productos.";
         }
     
+        echo '</div>';
+    
         $conexion->close();
     }
-
     
     
     
@@ -123,9 +139,10 @@ class login{
         $resultado = $conexion->query($sql);
     
         if($resultado){
-            header("location:controlad.php?parte=parte9");
+            header("location:controlad.php?parte=parte7");
         }
     }
+    
 
 
 }

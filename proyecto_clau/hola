@@ -721,6 +721,125 @@ public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descrip
     $conexion->close();
 }
 
+<?php
+function obtenerImagen($id) {
+    // Conexión a la base de datos
+    $conexion = new mysqli("localhost", "usuario", "contraseña", "basededatos");
+
+    // Verificar la conexión
+    if ($conexion->connect_error) {
+        die("Error de conexión: " . $conexion->connect_error);
+    }
+
+    // Consulta SQL para obtener la imagen por ID
+    $sql = "SELECT imagen FROM tabla_imagenes WHERE id = $id";
+    $resultado = $conexion->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        // Obtener la ruta de la imagen
+        $fila = $resultado->fetch_assoc();
+        $rutaImagen = $fila["imagen"];
+
+        // Mostrar la imagen
+        echo '<img src="'.$rutaImagen.'" alt="Imagen">';
+    } else {
+        echo "No se encontró ninguna imagen con ese ID.";
+    }
+
+    // Cerrar la conexión
+    $conexion->close();
+}
+
+// Llamar a la función para obtener y mostrar la imagen
+obtenerImagen(1);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos</title>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="grid-container">
+    <?php
+    include "conexion.php";
+
+    $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos";
+    $resultado = $conexion->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        while ($row = $resultado->fetch_assoc()) {
+            echo '<div class="product">';
+            echo '<img src="'.$row['imagen'].'" alt="Imagen"><br>';
+            echo "ID Producto: " . $row['id_producto'] . "<br>";
+            echo "Nombre: " . $row['nombre_producto'] . "<br>";
+            echo "Precio: " . $row['precio'] . "<br>";
+            echo "Cantidad: " . $row['cantidad'] . "<br>";
+            echo "Detalles: " . $row['detalles'] . "<br>";
+            echo "ID Categoría: " . $row['id_categoría'] . "<br>";
+            echo '</div>';
+        }
+    } else {
+        echo "No se encontraron productos.";
+    }
+    ?>
+</div>
+</body>
+</html>
+
+<?php
+$imagenes=array("imagenes/favoritos-2.png", "imagenes/favoritos2.png", "imagenes/favoritos3.png" ,"imagenes/favoritos4.png");
+$descripcion=array("buso negro","saco color gris","conjunto negro de falda y blusa","zapatos skrate negros con blanco");
+
+echo '<div style="text-align: center;">';
+for ($i = 0; $i < count($imagenes); $i++) {
+    echo '<figure style="display: inline-block; margin: 0 10px 20px 10px;">';
+    echo '<img src="' . $imagenes[$i] . '" alt="Imagen" style="margin-bottom: 10px;">';
+    echo '<figcaption>' . $descripcion[$i] . '</figcaption>';
+    echo '</figure>';
+}
+
+$imagenes1=array("imagenes/favoritos5.png", "imagenes/favoritos6.png", "imagenes/favoritos7.png" ,"imagenes/favoritos8.png");
+$descripcion1=array("gorras","buso blanco olgado","pantalon azul","crop top azul");
+
+echo '<div style="text-align: center;">';
+for ($i = 0; $i < count($imagenes1); $i++) {
+    echo '<figure style="display: inline-block; margin: 0 10px 20px 10px;">';
+    echo '<img src="' . $imagenes1[$i] . '" alt="Imagen" style="margin-bottom: 10px;">';
+    echo '<figcaption>' . $descripcion1[$i] . '</figcaption>';
+    echo '</figure>';
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Página de Productos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <?php
+    // Llama a la función mostrarPro para mostrar los productos en columnas
+    mostrarPro();
+    ?>
+</body>
+</html>
+
 
 
 

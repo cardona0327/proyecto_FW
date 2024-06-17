@@ -26,7 +26,7 @@ if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
         header("location:controlador.php?seccion=seccion3");
         exit; 
     } else {
-        header("location:controlador.php?seccion=seccion8");
+        header("location:out.html");
         exit; 
     }
 } else {

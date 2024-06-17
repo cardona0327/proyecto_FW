@@ -51,23 +51,20 @@
   </style>
 
 
-  <br><br><div class="card">
-    <div class="image-preview">
-      <img id="preview" src="#" alt="Vista previa de la imagen">
-    </div>
+<br><br><div class="card">
     <div class="card-content">
-      <h2>Agregar Producto</h2>
-      <form action="guardarPro.php" enctype="multipart/form-data">
+      <h2>Agregar Categoría</h2>
+      <form action=".php" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="id_categoria">ID_categoria:</label>
+          <label for="id_producto">ID_categoria:</label>
           <input type="number" id="id_categoria" name="id_categoria">
         </div>
         <div class="form-group">
           <label for="categoria">Categoría:</label>
-          <input type="text" id="nombre" name="nombre">
+          <input type="text" id="categoria" name="categoria">
         </div>
-       
-        <input type="submit" value="Agregar Producto"><br>
+        <input type="submit" value="Agregar Categoría"><br>
       </form>
     </div>
   </div>
+  

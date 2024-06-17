@@ -12,7 +12,7 @@
   </head>
   <body>
   <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
-    <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #D5D3DA;">
+    <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #7ED0D8;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">FASHION WORLD</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@
             <li><a class="dropdown-item" href="#">Fechas especiales</a></li>
             <li><a class="dropdown-item" href="#">Mi perfil</a></li>
             <li><a class="dropdown-item" href="admi.php">ADMINISTRADOR</a></li>
+            <li><a class="dropdown-item" href="cerrarSe.php">Cerrar sesión</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">iniciar sesión</a></li>

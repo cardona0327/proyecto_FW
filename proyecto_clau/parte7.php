@@ -54,7 +54,7 @@
 <br><br><div class="card">
     <div class="card-content">
       <h2>Agregar Categoría</h2>
-      <form action=".php" enctype="multipart/form-data">
+      <form action="guardarCate.php" enctype="multipart/form-data">
         <div class="form-group">
           <label for="id_producto">ID_categoria:</label>
           <input type="number" id="id_categoria" name="id_categoria">

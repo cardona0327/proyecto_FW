@@ -28,7 +28,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="controlad.php?parte=parte2">conteo de usuarios</a></li>
             <li><a class="dropdown-item" href="controlad.php?parte=parte3">Agregar productos</a></li>
-            <li><a class="dropdown-item" href="controlad.php?parte=parte8">Agregar categorías</a></li>
+            <li><a class="dropdown-item" href="controlad.php?parte=parte7">Agregar categorías</a></li>
             <li><a class="dropdown-item" href="controlad.php?parte=parte6">Eliminar</a></li>
             <li><a class="dropdown-item" href="#">Añadir fechas especiales</a></li>
           </ul>

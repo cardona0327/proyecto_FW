@@ -62,9 +62,9 @@ class login{
         // }
     // }
     
-    public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $id_categoria, $imagen) {
+    public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen) {
         include "conexion.php";
-        $sql = "INSERT INTO tb_productos (id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen) VALUES ('$id_pro', '$nombre', '$precio', '$cantidad', '$descripcion', '$id_categoria', '$imagen')";
+        $sql = "INSERT INTO tb_productos(id_producto, nombre_producto, precio, cantidad, detalles, imagen) VALUES ('$id_pro', '$nombre', '$precio', '$cantidad', '$descripcion', '$imagen')";
         $consulta = $conexion ->query($sql);
         if($consulta){
             header("location:controlad.php?parte=parte4");
@@ -81,7 +81,7 @@ class login{
     public static function mostrarPro() {
         include "conexion.php";
     
-        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, id_categoría, imagen FROM tb_productos";
+        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, imagen FROM tb_productos";
         $resultado = $conexion->query($sql);
     
         echo '<div class="productos-container">';
@@ -94,7 +94,6 @@ class login{
                 echo "Precio: " . $row['precio'] . "<br>";
                 echo "Cantidad: " . $row['cantidad'] . "<br>";
                 echo "Detalles: " . $row['detalles'] . "<br>";
-                echo "ID Categoría: " . $row['id_categoría'] . "<br>";
                 echo "Imagen: <br>";
     
                 // Verificar si la ruta de la imagen no está vacía
@@ -132,21 +131,58 @@ class login{
         }
     }
 
-    public static function AgregarCategoria($id_categoria,$categoria) {
+    public static function AgregarCategoria($id_categoria, $categoria) {
         include "conexion.php";
     
-        $sql = "INSERT INTO tb_categoria(id_categoría,categoria) VALUE($id_categoria,$categoria); ";
+        $sql = "INSERT INTO tb_categoria(id_categoria, categoria) VALUES ('$id_categoria', '$categoria')";
         $resultado = $conexion->query($sql);
     
         if($resultado){
-            header("location:controlad.php?parte=parte7");
+            header("location:controlad.php?parte=parte8");
         }
     }
     
+    public static function mostrarCate() {
+        include "conexion.php"; // Incluye el archivo de conexión a la base de datos
+    
+        $sql = "SELECT * FROM tb_categoria"; // Consulta para seleccionar todas las categorías
+        $resultado = $conexion->query($sql);
+    
+        // Verifica si hay resultados
+        if ($resultado->num_rows > 0) {
+            // Muestra las categorías utilizando un ciclo while
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<div class='categoria-item' style='position: relative;'>"; 
+                echo "<div class='categoria-id'>" . $fila['id_categoria'] . "</div>";
+                echo "<div class='categoria-titulo'>" . $fila['categoria'] . "</div>";
+                echo "<button class='editar-btn top-left'>Editar</button>"; 
+                echo "</div>";
+            }
+        } else {
+            echo "No se encontraron categorías.";
+        }
+    
+        $conexion->close(); // Cierra la conexión a la base de datos
+    }
 
 
+    public static function editar($id,$categoria) {
+        include "conexion.php"; // Incluye el archivo de conexión a la base de datos
+    
+        $sql = "UPDATE tb_categoria SET categoria = '$categoria' WHERE id='$id'"; // Consulta para seleccionar todas las categorías
+        $resultado = $conexion->query($sql);
+        if($resultado){
+            header("location:controlad.php?parte=parte8");
+        } 
+    }
+    
 }
 
+
+
+
+    
+ 
 
 
 

@@ -78,10 +78,6 @@
           <label for="descripcion">Descripción:</label>
           <textarea id="descripcion" name="descripcion" rows="4"></textarea>
         </div>
-        <div class="form-group">
-          <label for="nombre">ID categoría:</label>
-          <input type="number" id="categoria" name="categoria">
-        </div>
         <input type="file" id="imagen" name="imagen" accept="image/*" onchange="previewImage()"><br><br>
         <input type="submit" value="Agregar Producto"><br>
       </form>

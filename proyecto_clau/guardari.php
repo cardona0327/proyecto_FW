@@ -8,6 +8,7 @@ include("clase.php");
 $resultado = login::verificar($doc, $co);
 echo $resultado;
 ?>-->
+
 <?php
 $doc = $_GET['documento'];
 $co = $_GET['contraseña'];

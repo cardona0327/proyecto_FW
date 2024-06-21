@@ -166,16 +166,47 @@ class login{
     }
 
 
-    public static function editar($id,$categoria) {
-        include "conexion.php"; // Incluye el archivo de conexión a la base de datos
+    public static function perfil() {
+        include "conexion.php";
     
-        $sql = "UPDATE tb_categoria SET categoria = '$categoria' WHERE id='$id'"; // Consulta para seleccionar todas las categorías
+        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, imagen FROM tb_productos";
         $resultado = $conexion->query($sql);
-        if($resultado){
-            header("location:controlad.php?parte=parte8");
-        } 
-    }
     
+        echo '<div class="productos-container">';
+    
+        if ($resultado->num_rows > 0) {
+            while ($row = $resultado->fetch_assoc()) {
+                echo '<div class="producto">';
+                echo "ID Producto: " . $row['id_producto'] . "<br>";
+                echo "Nombre: " . $row['nombre_producto'] . "<br>";
+                echo "Precio: " . $row['precio'] . "<br>";
+                echo "Cantidad: " . $row['cantidad'] . "<br>";
+                echo "Detalles: " . $row['detalles'] . "<br>";
+                echo "Imagen: <br>";
+    
+                // Verificar si la ruta de la imagen no está vacía
+                if (!empty($row['imagen'])) {
+                    // Construir la ruta relativa de la imagen
+                    $rutaImagen = "imagenes/" . $row['imagen'];
+                    
+                    // Mostrar la imagen
+                    echo '<img src="'.$rutaImagen.'" alt="Imagen" class="producto-imagen"><br>';
+                } else {
+                    echo "No se encontró ninguna imagen para este producto.<br>";
+                }
+    
+                echo '</div>';
+            }
+        } else {
+            echo "No se encontraron productos.";
+        }
+    
+        echo '</div>';
+    
+        $conexion->close();
+    }
+
+   
 }
 
 

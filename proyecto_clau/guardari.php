@@ -13,6 +13,7 @@ echo $resultado;
 $doc = $_GET['documento'];
 $co = $_GET['contraseña'];
 
+
 include("clase.php");
 login::verificar($doc,$co);
 
@@ -36,6 +37,19 @@ if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
 }
 
 include( "plantilla.php" );
+
+$doc = $_POST['documento']; // Ajusta esto según tus campos de formulario
+$co = $_POST['contraseña']; // Ajusta esto según tus campos de formulario
+
+$resultado_verificacion = verificar($doc, $co);
+
+if($resultado_verificacion == 1){
+    // Inicio de sesión exitoso
+} else {
+    // Redirige a la misma página con el parámetro de error si la verificación falla
+    header("Location: tu_pagina.php?error=error-1");
+    exit;
+}
 ?>
 
 

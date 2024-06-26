@@ -213,3 +213,50 @@ public static function mostrarCate() {
     text-align: center; /* Centra el texto en la categoría */
     margin: auto; /* Centra verticalmente el texto */
 }
+
+<?php
+session_start();
+
+if(isset($_GET['error'])){
+    if($_GET['error'] == "error-1"){
+        if(!isset($_SESSION['stop'])) $_SESSION['stop'] = 0;
+        $_SESSION['stop'] += 1;
+        
+        if($_SESSION['stop'] >= 3){
+            echo 'No pasas. Contraseña o usuario incorrecto.';
+            exit; // Detiene la ejecución del script
+        }
+    }
+}
+
+function verificar($doc, $co) {
+    require("conexion.php");
+    $salida = "";
+    $sql = "SELECT count(*) from tb_usuarios ";
+    $sql .= "where documento='$doc' and contraseña='$co'";
+    $resultado = $conexion->query($sql);
+    
+    while($fila = $resultado->fetch_array()){
+        $salida = $fila[0];
+    }
+    
+    $conexion->close();
+    return $salida; 
+}
+
+
+$doc = $_POST['documento']; 
+$co = $_POST['contraseña']; 
+
+$resultado_verificacion = verificar($doc, $co);
+
+if($resultado_verificacion == 1){
+   
+} else {
+  a
+    header("Location: tu_pagina.php?error=error-1");
+    exit;
+}
+
+
+

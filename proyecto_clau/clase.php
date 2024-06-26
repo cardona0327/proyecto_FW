@@ -123,14 +123,17 @@ class login{
     public static function eliminarPro($id) {
         include "conexion.php";
     
-        $sql = "DELETE FROM  tb_productos WHERE id_producto = $id";
+        $sql = "DELETE FROM tb_productos WHERE id_producto = $id";
         $resultado = $conexion->query($sql);
     
-        if($resultado){
-            return "se ha eliminado el producto correctamente";
-        }
+        // if ($resultado) {
+        //     return "success";
+        // } else {
+        //     return "error";
+        // }
     }
-
+    
+    
     public static function AgregarCategoria($id_categoria, $categoria) {
         include "conexion.php";
     
@@ -169,10 +172,10 @@ class login{
     public static function perfil() {
         include "conexion.php";
     
-        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, imagen FROM tb_productos";
+        $sql = "SELECT documento, nombre, apellido, correo, fecha, imagen FROM tb_usuarios";
         $resultado = $conexion->query($sql);
     
-        echo '<div class="productos-container">';
+        echo '<div class="usuarios-container">';
     
         if ($resultado->num_rows > 0) {
             while ($row = $resultado->fetch_assoc()) {
@@ -198,7 +201,7 @@ class login{
                 echo '</div>';
             }
         } else {
-            echo "No se encontraron productos.";
+            echo "No se encontraron usuarios.";
         }
     
         echo '</div>';

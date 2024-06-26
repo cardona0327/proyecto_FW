@@ -1,15 +1,27 @@
-
-    function previewImage() {
-      const preview = document.querySelector('#preview');
-      const file = document.querySelector('input[type=file]').files[0];
-      const reader = new FileReader();
-
-      reader.addEventListener('load', function() {
-        preview.src = reader.result;
-        preview.style.display = 'block';
-      }, false);
-
-      if (file) {
-        reader.readAsDataURL(file);
-      }
+function alerta(){
+    // console.log("bienvenida");
+    var param = {
+        'nombre': true
     }
+    $.ajax({
+        data: param,
+        url: 'consulta.php',
+        datatype: 'html',
+        method: 'post',
+        success: function(respuesta){
+            // console.log(respuesta);
+            document.getElementById('seleccion').innerHTML = respuesta;
+        }, 
+        error: function(xhr,status,error){
+            console.log(error);
+        }
+    });
+
+    // Swal.fire({
+    //     position: "top-end",
+    //     icon: "success",
+    //     title: "Your work has been saved",
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   });
+}

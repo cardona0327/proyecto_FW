@@ -12,7 +12,11 @@
   include( "plantilla.php" );
   
 
+ 
+
 ?>
+
+
 <!--  
 include("login.php");
 if(! isset($_SESSION)) session_start();

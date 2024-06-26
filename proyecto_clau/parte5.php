@@ -8,4 +8,4 @@ include("clase.php");
 echo(login::eliminarPro($id))
 ?>
 
-</div>
+

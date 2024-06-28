@@ -25,3 +25,17 @@ function alerta(){
     //     timer: 1500
     //   });
 }
+
+function alertaEliminar(des){
+    if(des===0){
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Debes ingresar el código del producto"
+          }).then((result)=>{
+            if (result.isConfirmed){
+                
+            }
+          });
+    }
+}

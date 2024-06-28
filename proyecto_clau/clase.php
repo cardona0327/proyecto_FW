@@ -50,6 +50,30 @@ class login{
         return $salida; 
     }   
 
+    public static function login($username, $password) {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        // Aquí deberías realizar la verificación de credenciales en base de datos
+        $resultado = self::verificar($username, $password);
+        
+        if ($resultado > 0) {
+            // Credenciales válidas, iniciar sesión
+            $_SESSION['username'] = $username;
+            $_SESSION['stop'] = 0; // Reinicia el contador de errores
+            return true;
+        } else {
+            // Credenciales inválidas, incrementar contador de errores
+            if (!isset($_SESSION['stop'])) {
+                $_SESSION['stop'] = 0;
+            }
+            $_SESSION['stop'] += 1;
+            
+            return false;
+        }
+    }
+
 
         
 
@@ -122,15 +146,15 @@ class login{
     
     public static function eliminarPro($id) {
         include "conexion.php";
-    
+        $salida = 0;
         $sql = "DELETE FROM tb_productos WHERE id_producto = $id";
         $resultado = $conexion->query($sql);
     
-        // if ($resultado) {
-        //     return "success";
-        // } else {
-        //     return "error";
-        // }
+        if ($resultado) {
+             "bien";
+         } else {
+             return "error";
+        }
     }
     
     

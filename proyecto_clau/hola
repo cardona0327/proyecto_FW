@@ -259,4 +259,372 @@ if($resultado_verificacion == 1){
 }
 
 
+// est es lo mio
 
+<?php
+
+class Usuario {
+    
+    public static function verificar($doc, $co) {
+        require("conexion.php"); // Suponiendo que aquí se realiza la conexión a la base de datos
+        
+        $sql = "SELECT count(*) FROM tb_usuarios ";
+        $sql .= "WHERE documento='$doc' AND contraseña='$co'";
+        
+        $resultado = $conexion->query($sql);
+        
+        $salida = 0;
+        
+        if ($resultado) {
+            $fila = $resultado->fetch_array();
+            $salida = $fila[0];
+        }
+        
+        $conexion->close();
+        
+        return $salida; 
+    }
+    
+    public static function login($username, $password) {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        // Aquí deberías realizar la verificación de credenciales en base de datos
+        $resultado = self::verificar($username, $password);
+        
+        if ($resultado > 0) {
+            // Credenciales válidas, iniciar sesión
+            $_SESSION['username'] = $username;
+            $_SESSION['stop'] = 0; // Reinicia el contador de errores
+            return true;
+        } else {
+            // Credenciales inválidas, incrementar contador de errores
+            if (!isset($_SESSION['stop'])) {
+                $_SESSION['stop'] = 0;
+            }
+            $_SESSION['stop'] += 1;
+            
+            return false;
+        }
+    }
+    
+}
+
+?>
+<?php
+// Ejemplo de cómo usar la clase Usuario para iniciar sesión
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (Usuario::login($username, $password)) {
+        // Inicio de sesión exitoso, redirecciona a la página principal
+        header("Location: index.php");
+        exit();
+    } else {
+        // Error en las credenciales, redirecciona de vuelta al formulario de inicio de sesión con el error
+        header("Location: login.php?error=error-1");
+        exit();
+    }
+}
+?>
+
+<?php
+
+// session_start();
+
+// if(isset($_GET['error'])){
+//     if($_GET['error'] == "error-1"){
+//         if(!isset($_SESSION['stop'])) $_SESSION['stop'] = 0;
+//         $_SESSION['stop'] += 1;
+        
+//         if($_SESSION['stop'] >= 3){
+//             echo 'No pasas. Contraseña o usuario incorrecto.';
+//             exit; // Detiene la ejecución del script
+//         }
+//     }
+// }
+
+
+// session_start();
+
+// // Función para iniciar sesión y verificar credenciales
+// function loginUser($username, $password) {
+//     // Realiza tu consulta SQL para verificar las credenciales
+//     // Aquí deberías tener tu lógica para consultar la base de datos u otro sistema de almacenamiento
+//     $db_username = "usuario"; // Reemplaza con el nombre de usuario real de la base de datos
+//     $db_password = "contraseña"; // Reemplaza con la contraseña real almacenada en la base de datos
+
+//     if ($username == $db_username && $password == $db_password) {
+//         // Credenciales válidas, iniciar sesión
+//         $_SESSION['username'] = $username;
+//         $_SESSION['stop'] = 0; // Inicializa el contador de errores
+        
+//         return true; // Indica inicio de sesión exitoso
+//     } else {
+//         // Credenciales inválidas, incrementar contador de errores
+//         if (!isset($_SESSION['stop'])) {
+//             $_SESSION['stop'] = 0;
+//         }
+//         $_SESSION['stop'] += 1;
+
+//         return false; // Indica inicio de sesión fallido
+//     }
+// }
+
+// Lógica para procesar el formulario de inicio de sesión
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verifica si se han enviado los datos del formulario
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Llama a la función para iniciar sesión y verificar credenciales
+    if (loginUser($username, $password)) {
+        // Inicio de sesión exitoso, redirecciona a la página principal
+        header("Location: seccion3.php"); // Cambia index.php por la página a la que quieres redireccionar
+        exit();
+    } else {
+        // Error en las credenciales, redirecciona de vuelta al formulario de inicio de sesión con el error
+        header("Location: seccion1.php?error=error-1"); // Puedes ajustar los parámetros de error según tu lógica
+        exit();
+    }
+
+
+    <?php
+    $doc = $_GET['documento'];
+    $co = $_GET['contraseña'];
+    
+    
+    include("clase.php");
+    login::verificar($doc,$co);
+    
+    include_once("clase.php");
+    if(!isset($_SESSION)) session_start();
+    if(!isset($_SESSION['documento'])) $_SESSION['documento'] = '';
+    if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
+        $doc = $_GET['documento'];
+        $co= $_GET['contraseña'];
+        if(login::verificar($doc, $co) >= 1) {
+            $_SESSION['documento'] =$doc;
+            header("location:controlador.php?seccion=seccion3");
+            exit; 
+        } else {
+            header("location:out.html");
+            exit; 
+        }
+    } else {
+        echo "Error: Debes proporcionar usuario y contraseña.";
+        exit; 
+    }
+    
+    include( "plantilla.php" );
+    
+    $doc = $_POST['documento']; // Ajusta esto según tus campos de formulario
+    $co = $_POST['contraseña']; // Ajusta esto según tus campos de formulario
+    
+    $resultado_verificacion = verificar($doc, $co);
+    
+    if($resultado_verificacion == 1){
+        // Inicio de sesión exitoso
+    } else {
+        // Redirige a la misma página con el parámetro de error si la verificación falla
+        header("Location: tu_pagina.php?error=error-1");
+        exit;
+    }
+    
+    
+    session_start(); // Inicia la sesión al inicio del archivo
+    
+    if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
+        $doc = $_GET['documento'];
+        $co = $_GET['contraseña'];
+    
+        include("clase.php"); // Incluye tu archivo donde está la clase login
+    
+        $resultado_verificacion = login::verificar($doc, $co);
+    
+        if($resultado_verificacion >= 1) {
+            $_SESSION['documento'] = $doc;
+            header("location: controlador.php?seccion=seccion3");
+            exit; 
+        } else {
+            // Manejo de intentos fallidos
+            if(!isset($_SESSION['stop'])) {
+                $_SESSION['stop'] = 0;
+            }
+    
+            $_SESSION['stop'] += 1;
+    
+            if($_SESSION['stop'] >= 3) {
+                echo 'No pasas, has excedido el límite de intentos fallidos.';
+                exit; // Puedes redirigir o mostrar un mensaje adecuado
+            } else {
+                // Redirige de vuelta al formulario con el error
+                header("location: formulario.php?error=error-1");
+                exit;
+            }
+        }
+    } else {
+        echo "Error: Debes proporcionar usuario y contraseña.";
+        exit; 
+    }
+    ?>
+    <?php
+session_start(); // Inicia la sesión al inicio del archivo
+
+if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
+    $doc = $_GET['documento'];
+    $co = $_GET['contraseña'];
+
+    include("clase.php"); // Incluye tu archivo donde está la clase login
+
+    // Verificamos si la cuenta está bloqueada temporalmente
+    if(isset($_SESSION['bloqueado_hasta']) && $_SESSION['bloqueado_hasta'] > time()) {
+        $tiempo_restante = $_SESSION['bloqueado_hasta'] - time();
+        echo "Tu cuenta está bloqueada temporalmente. Intenta nuevamente en $tiempo_restante segundos.";
+        exit;
+    }
+
+    // Verificamos si ya se han excedido los intentos permitidos
+    if(isset($_SESSION['stop']) && $_SESSION['stop'] >= 3) {
+        if(!isset($_SESSION['bloqueado_hasta'])) {
+            // Establecemos el tiempo de bloqueo de 5 minutos (300 segundos)
+            $_SESSION['bloqueado_hasta'] = time() + 300; // 300 segundos = 5 minutos
+        }
+        echo "Tu cuenta ha sido bloqueada temporalmente por exceder el límite de intentos fallidos. Intenta nuevamente más tarde.";
+        exit;
+    }
+
+    // Si la cuenta no está bloqueada, procedemos con la verificación de las credenciales
+    $resultado_verificacion = login::verificar($doc, $co);
+
+    if($resultado_verificacion >= 1) {
+        // Si las credenciales son correctas, reiniciamos el contador de intentos fallidos
+        $_SESSION['stop'] = 0;
+        unset($_SESSION['bloqueado_hasta']); // Reiniciamos el bloqueo temporal si existe
+
+        $_SESSION['documento'] = $doc;
+        header("location: controlador.php?seccion=seccion3");
+        exit; 
+    } else {
+        // Incrementamos el contador de intentos fallidos
+        if(!isset($_SESSION['stop'])) {
+            $_SESSION['stop'] = 0;
+        }
+        $_SESSION['stop'] += 1;
+
+        // Redirigimos de vuelta al formulario con el error
+        header("location: formulario.php?error=error-1");
+        exit;
+    }
+} else {
+    echo "Error: Debes proporcionar usuario y contraseña.";
+    exit; 
+}
+?>
+<?php
+session_start(); // Inicia la sesión al inicio del archivo
+
+if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
+    $doc = $_GET['documento'];
+    $co = $_GET['contraseña'];
+
+    include("clase.php"); // Incluye tu archivo donde está la clase login
+
+    $resultado_verificacion = login::verificar($doc, $co);
+
+    if($resultado_verificacion >= 1) {
+        $_SESSION['documento'] = $doc;
+        header("location: controlador.php?seccion=seccion3");
+        exit; 
+    } else {
+        // Manejo de intentos fallidos
+        if(!isset($_SESSION['stop'])) {
+            $_SESSION['stop'] = 0;
+        }
+
+        $_SESSION['stop'] += 1;
+
+        if($_SESSION['stop'] >= 3) {
+            echo 'No pasas, has excedido el límite de intentos fallidos.';
+            exit; // Puedes redirigir o mostrar un mensaje adecuado
+        } else {
+            // Redirige de vuelta al formulario con el error
+            header("location: formulario.php?error=error-1");
+            exit;
+        }
+    }
+} else {
+    echo "Error: Debes proporcionar usuario y contraseña.";
+    exit; 
+}
+?>
+
+
+
+
+
+
+
+necesito que me arregles este codigo
+<?php
+session_start(); 
+
+if(isset($_GET['documento']) && isset($_GET['contraseña'])) {
+    $doc = $_GET['documento'];
+    $co = $_GET['contraseña'];
+
+    include("clase.php"); 
+
+    
+    if(isset($_SESSION['bloqueado_hasta']) && $_SESSION['bloqueado_hasta'] > time()) {
+        $tiempo_restante = $_SESSION['bloqueado_hasta'] - time();
+        echo "Tu cuenta está bloqueada temporalmente. Intenta nuevamente en $tiempo_restante segundos.";
+        exit;
+    }
+
+    
+    if(isset($_SESSION['error']) && $_SESSION['stop'] >= 3) {
+        if(!isset($_SESSION['bloqueado_hasta'])) {
+            
+            $_SESSION['bloqueado_hasta'] = time() + 300; 
+        }
+        echo "Tu cuenta ha sido bloqueada temporalmente por exceder el límite de intentos fallidos. Intenta nuevamente más tarde.";
+        exit;
+    }
+
+   
+    $resultado_verificacion = login::verificar($doc, $co);
+
+    if($resultado_verificacion >= 3) {
+      
+        $_SESSION['stop'] = 0;
+        unset($_SESSION['bloqueado_hasta']); 
+
+        $_SESSION['documento'] = $doc;
+        header("location: controlador.php?seccion=seccion3");
+        exit; 
+    } else {
+        
+        if(!isset($_SESSION['stop'])) {
+            $_SESSION['stop'] = 0;
+        }
+        $_SESSION['stop'] += 1;
+
+       
+        header("location: seccion1.php?error=error-1");
+        exit;
+    }
+} else {
+    echo "Error: Debes proporcionar usuario y contraseña.";
+    exit; 
+}
+?>
+
+
+quiero que arregles la parte en la que si el usuario ingrese los datos incorrectos mas de 3 veces se le bloquee la cuenta durante 5 minutos 
+pero mi codigo nisiquera cuenta las 3 veces de error y de una vez le dice que esta bloqueado entonces quiero que cuando se cumplan las 3 veces 
+de eror ahí si lo bloquee y que identifique que usuarios es ya que cuando ingreso un usuario distinto de una vez tambien le dice que esta bloqueado 
+y dame lo que debo poner en el formulario tambien 

@@ -3,9 +3,14 @@
 </head>
 <div class="row">
 <?php 
-$id = $_GET['id_producto'];
-include("clase.php");
-echo(login::eliminarPro($id))
+    if(isset($_GET['id_producto']) && $_GET['id_producto']>0){
+        echo "bienvenido";
+    }else{
+        header("location:controlad.php?parte=parte6&mensaje=0");
+    }
 ?>
 
 
+<!-- $id = $_GET['id_producto'];
+include("clase.php");
+echo(login::eliminarPro($id)) -->

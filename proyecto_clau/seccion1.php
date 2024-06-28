@@ -36,19 +36,50 @@
             cursor: pointer;
         }
     </style>
-<head>
-    <title><?php echo "inicio de sesión" ?></title>
-</head>
-<div class="container">
+
+<?php
+session_start(); // Inicia la sesión al inicio del archivo
+
+if(isset($_GET['error'])){
+    if($_GET['error'] == "error-1"){
+        if(!isset($_SESSION['stop'])) {
+            $_SESSION['stop'] = 0;
+        }
+        $_SESSION['stop'] += 1;
+    }
+}
+
+// Verificamos si la cuenta está bloqueada temporalmente
+if(isset($_SESSION['bloqueado_hasta']) && $_SESSION['bloqueado_hasta'] > time()) {
+    $tiempo_restante = $_SESSION['bloqueado_hasta'] - time();
+    echo "Tu cuenta está bloqueada temporalmente. Intenta nuevamente en $tiempo_restante segundos.";
+    exit;
+}
+?>
+
+
+    <div class="container">
         <div class="form-container">
             <h1>Iniciar sesión</h1>
-            <form action="guardari.php">
-                <input type="number" name="documento" placeholder="Usuario"><br><br>
-                <input type="password" name="contraseña" placeholder="Contraseña"><br><br>
+            <form action="guardari.php" method="post"> <!-- Ajusta la acción del formulario según tu script de procesamiento -->
+                <input type="text" name="documento" placeholder="Usuario" required><br><br>
+                <input type="password" name="contraseña" placeholder="Contraseña" required><br><br>
                 <input type="submit" value="Ingresar">
             </form>
+            <?php
+            // Mostrar mensaje de error si existe
+            if(isset($_GET['error']) && $_GET['error'] == "error-1") {
+                echo "<p>Error: Usuario o contraseña incorrectos. Intento fallido número {$_SESSION['stop']}.</p>";
+            }
+            ?>
         </div>
-</div>
+    </div>
+
+
+
+
+
+
 
 
 

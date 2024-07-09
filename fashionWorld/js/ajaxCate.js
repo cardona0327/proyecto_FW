@@ -1,12 +1,15 @@
-function eliminarPro(){
-    var valor = document.getElementById('id_producto').value;
+function eliminarCate(){
+    var valor = document.getElementById('id_categoria').value;
     param = {
-        "idProEliminar":valor
+        "idCateEliminar":valor
         
     }
+
+
+
     $.ajax({
         data: param,
-        url: '../admi/controlador.php',
+        url: '../admi/controladorCate.php',
         dataType: 'html',
         method: 'get',
         success:function(respuesta){//función de respuesta
@@ -17,7 +20,7 @@ function eliminarPro(){
                     text: "no se encontró",
                   }) 
             }else{
-                document.getElementById('productos').innerHTML = respuesta;
+                document.getElementById('categorias').innerHTML = respuesta;
             }
             
             
@@ -29,4 +32,3 @@ function eliminarPro(){
 
     })
 }
-  

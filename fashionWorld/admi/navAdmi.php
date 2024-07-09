@@ -38,13 +38,14 @@
           Ver
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="controlad.php?parte=parte2">conteo de usuarios</a></li>
             <li><a class="dropdown-item" href="ctroBar.php?seccion=agregarPro">Agregar productos</a></li>
             <li><a class="dropdown-item" href="ctroBar.php?seccion=verPro">ver productos</a></li>
             <li><a class="dropdown-item" href="ctroBar.php?seccion=agregarCate">Agregar categorías</a></li>
-            <li><a class="dropdown-item" href="ctroBar.php?seccion=eliminarPro">Eliminar</a></li>
-            <li><a class="dropdown-item" href="ctroBar.php?seccion=cerrarSe">Cerrar sesión</a></li>
             <li><a class="dropdown-item" href="ctroBar.php?seccion=verCate">Ver categorías</a></li>
+            <li><a class="dropdown-item" href="ctroBar.php?seccion=eliminarPro">Eliminar Productos</a></li>
+            <li><a class="dropdown-item" href="ctroBar.php?seccion=eliminarCate">Eliminar Categorías</a></li>
+            <li><a class="dropdown-item" href="ctroBar.php?seccion=cerrarSe">Cerrar sesión</a></li>
+            
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">regresar</a></li>
@@ -78,6 +79,7 @@
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/ajax.js"></script>
+    <script src="../js/ajaxCate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    

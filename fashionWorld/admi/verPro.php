@@ -1,7 +1,7 @@
 <div class="row">
 <?php 
 
-include("../method/productos_class.php");
+include_once("../method/productos_class.php");
 echo Productos::mostrarPro();
 ?>
 

@@ -68,10 +68,41 @@ class Modelo{
     public static function sqlEliminarPro($id) {
         include("db_fashion/cb.php");
         $sql = "DELETE FROM tb_productos WHERE id_producto = '$id'";
-        echo $sql;
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlEliminarCate($id) {
+        include("db_fashion/cb.php");
+        $sql = "DELETE FROM tb_categoria WHERE id_categoria = '$id'";
         return $resultado = $conexion->query($sql);
     }
     
+
+    public static function sqlCategorias($op){
+        include("db_fashion/cb.php");
+        $sql = "select * from tb_categorias";
+        $resultado = $conexion->query($sql);
+        if ($resultado->num_rows > 0) {
+            // Muestra las categorías utilizando un ciclo while
+            while ($fila = $resultado->fetch_assoc()) {
+                if($op == 1){
+                    $salida = $fila['id_producto'];
+                 }
+                 if($op == 2){
+                    $salida = $fila['categoria'];
+                 }
+            }
+        }
+
+    }
+
+    public static function sqlActuCate($id,$categoriaN){
+        include("db_fashion/cb.php");
+        $sql = "update tb_categoria set categoria = '$categoriaN' ";
+        $sql .= "where id_categoria = '$id'";
+        return $resultado = $conexion->query($sql);
+
+    }
 
 
 }

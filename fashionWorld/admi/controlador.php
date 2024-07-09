@@ -9,4 +9,5 @@ if(isset($_GET['idProEliminar'])){
     }
 }
 
-echo Productos::eliminarPro($_GET['idProEliminar'])
+Productos::eliminarPro($_GET['idProEliminar']);
+

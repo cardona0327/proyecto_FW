@@ -6,7 +6,7 @@
  $descripcion = $_GET['descripcion'];
  $imagen = $_GET['imagen'];
 
- include("../method/modelo.php");
-    Modelo::sqlAgregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen);
+ include("../method/productos_class.php");
+    Productos::agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen);
   
 ?>

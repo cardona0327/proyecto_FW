@@ -38,7 +38,7 @@ class Productos{
     }
 
     public static function mostrarCate() {
-        include("modelo.php");
+        include_once("modelo.php");
         $salida = "";
         $consulta = Modelo::sqlVerCate();
     
@@ -49,7 +49,7 @@ class Productos{
                 $salida .=  "<div class='categoria-item' style='position: relative;'>"; 
                 $salida .=  "<div class='categoria-id'>" . $fila['id_categoria'] . "</div>";
                 $salida .=  "<div class='categoria-titulo'>" . $fila['categoria'] . "</div>";
-                $salida .=  "<button class='editar-btn top-left' onclick='editar()'>Editar</button>"; 
+                $salida .=  "<a href='ctroBar.php?seccion=editarCate' class='editar-btn top-left' >Editar</a>"; 
                 $salida .=  "</div>";
             }
         } else {
@@ -60,11 +60,11 @@ class Productos{
         $conexion->close(); // Cierra la conexión a la base de datos
     }
 
-    public static function buscarPro($nombre){
-        include_once("modelo.php");
-        $consulta = Modelo::sqlBuscarPro($nombre);
-        return $consulta;
-    }
+    // public static function buscarPro($nombre){
+    //     include_once("modelo.php");
+    //     $consulta = Modelo::sqlBuscarPro($nombre);
+    //     return $consulta;
+    // }
     public static function eliminarPro($id){
         $salida = 0;
         include_once("modelo.php");
@@ -77,6 +77,57 @@ class Productos{
         return $salida;
     }
     
+    public static function eliminarCate($id){
+        $salida = 0;
+        include_once("modelo.php");
+        $consulta = Modelo::sqlEliminarCate($id);
+        if($consulta){
+            $salida = 1;
+        }else{
+            $salida = 0;
+        }
+        return $salida;
+    }
 
 
+    public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen){
+        include_once("modelo.php");
+        $consulta = Modelo::sqlAgregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen);
+        if($consulta){
+            header("location:ctroBar.php?seccion=verPro");
+        }
+
+    }
+    public static function agregarCate($id_categoria, $categoria){
+        include_once("modelo.php");
+        $consulta = Modelo::sqlAgregarCate($id_categoria, $categoria);
+        if($consulta){
+            header("location:ctroBar.php?seccion=verCate");
+        }
+
+    }
+    // public static function editarCate($id,$categoriaN){
+    //     $salida = "";
+    //     include_once("modelo.php");
+    //     $consulta = Modelo::sqlActuCate($id,$categoriaN);
+    //     if($consulta){
+
+    //     }
+    // }
+
+    public static function categorias($op){
+        include_once("modelo.php");
+        $consulta = Modelo::sqlCategorias($op);
+        if ($consulta->num_rows > 0) {
+            // Muestra las categorías utilizando un ciclo while
+            while ($fila = $consulta->fetch_assoc()) {
+                if($op == 1){
+                    $salida = $fila['id_producto'];
+                 }
+                 if($op == 2){
+                    $salida = $fila['categoria'];
+                 }
+            }
+        }
+    }
 }

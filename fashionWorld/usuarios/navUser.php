@@ -54,14 +54,14 @@
         </ul>
         <form id="formulario"class="d-flex ms-auto">
           <input id="nombre" class="form-control me-2" type="search" placeholder="producto" aria-label="Search">
-          <button id="enviar" class="btn btn-outline-success" type="button" onclick="buscarProducto()">Buscar</button>
+          <button id="enviar" class="btn btn-outline-success" type="button" >Buscar</button>
         </form>
       </ul>
     </div>
   </div>
 </nav>
 
-<div id="resultadoBusqueda" class="div">
+
 
 </div>
         

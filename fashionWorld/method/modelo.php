@@ -78,31 +78,21 @@ class Modelo{
     }
     
 
-    public static function sqlCategorias($op){
+    public static function sqlCategorias($des,$idCate){
         include("db_fashion/cb.php");
-        $sql = "select * from tb_categorias";
-        $resultado = $conexion->query($sql);
-        if ($resultado->num_rows > 0) {
-            // Muestra las categorías utilizando un ciclo while
-            while ($fila = $resultado->fetch_assoc()) {
-                if($op == 1){
-                    $salida = $fila['id_producto'];
-                 }
-                 if($op == 2){
-                    $salida = $fila['categoria'];
-                 }
-            }
-        }
-
-    }
-
-    public static function sqlActuCate($id,$categoriaN){
-        include("db_fashion/cb.php");
-        $sql = "update tb_categoria set categoria = '$categoriaN' ";
-        $sql .= "where id_categoria = '$id'";
+        if($des==1)$dato = "categoria";
+        $sql = "select $dato from tb_categoria ";
+        $sql .= "where id_categoria = '$idCate'";
         return $resultado = $conexion->query($sql);
+        
 
     }
 
+    public static function sqlEditar($id,$categoriaN){
+        include("db_fashion/cb.php");
+        $sql = "update tb_categoria  set categoria = '$categoriaN' ";
+        $sql .= "where id_categoria = '$id' ";
+        return $resultado = $conexion->query($sql);
+    }
 
 }

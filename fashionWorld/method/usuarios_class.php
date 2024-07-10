@@ -34,5 +34,13 @@ class Usuarios{
         $salida .= "</div>"; 
         return $salida;
     }
+
+    public static function eliminarCuentaUser($id){
+        include_once("modelo.php");
+        
+    
+        $salida .= "</div>"; 
+        return $salida;
+    }
     
 }

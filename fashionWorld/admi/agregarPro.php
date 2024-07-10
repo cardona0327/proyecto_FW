@@ -4,7 +4,7 @@
     </div>
     <div class="card-content">
       <h2>Agregar Producto</h2>
-      <form action="ctroAdmi.php" enctype="multipart/form-data">
+      <form action="ctroAdmi.php?" enctype="multipart/form-data" >
         <div class="form-group">
           <label for="id_producto">ID_producto:</label>
           <input type="number" id="id_producto" name="id_producto">
@@ -26,7 +26,7 @@
           <textarea id="descripcion" name="descripcion" filas="4"></textarea>
         </div>
         <input type="file" id="imagen" name="imagen" accept="image/*" onchange="previewImage()"><br><br>
-        <input type="submit" value="Agregar Producto"><br>
+        <input type="submit" name="crear" value="Agregar Producto"><br>
       </form>
     </div>
   </div>

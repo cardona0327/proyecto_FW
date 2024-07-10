@@ -9,7 +9,7 @@ function eliminarCate(){
 
     $.ajax({
         data: param,
-        url: '../admi/controladorCate.php',
+        url: 'ctroAdmi.php',
         dataType: 'html',
         method: 'get',
         success:function(respuesta){//función de respuesta

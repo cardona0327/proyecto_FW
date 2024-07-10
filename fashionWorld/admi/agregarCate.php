@@ -1,7 +1,7 @@
 <br><br><div class="card">
     <div class="card-content">
       <h2>Agregar Categoría</h2>
-      <form action="ctroCate.php" enctype="multipart/form-data">
+      <form action="ctroAdmi.php?agreCate=hd" enctype="multipart/form-data" method="post">
         <div class="form-group">
           <label for="id_producto">ID_categoria:</label>
           <input type="number" id="id_categoria" name="id_categoria">

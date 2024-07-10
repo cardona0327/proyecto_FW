@@ -49,7 +49,7 @@ class Productos{
                 $salida .=  "<div class='categoria-item' style='position: relative;'>"; 
                 $salida .=  "<div class='categoria-id'>" . $fila['id_categoria'] . "</div>";
                 $salida .=  "<div class='categoria-titulo'>" . $fila['categoria'] . "</div>";
-                $salida .=  "<a href='ctroBar.php?seccion=editarCate' class='editar-btn top-left' >Editar</a>"; 
+                $salida .=  "<a href='ctroBar.php?seccion=editarCate&dato=" .$fila['id_categoria']."'  class='editar-btn top-left' >Editar</a>"; 
                 $salida .=  "</div>";
             }
         } else {
@@ -92,10 +92,12 @@ class Productos{
 
     public static function agregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen){
         include_once("modelo.php");
+        $salida = 0;
         $consulta = Modelo::sqlAgregarPro($id_pro, $nombre, $precio, $cantidad, $descripcion, $imagen);
         if($consulta){
-            header("location:ctroBar.php?seccion=verPro");
+            $salida = 1;
         }
+        return $salida;
 
     }
     public static function agregarCate($id_categoria, $categoria){
@@ -106,28 +108,30 @@ class Productos{
         }
 
     }
-    // public static function editarCate($id,$categoriaN){
-    //     $salida = "";
-    //     include_once("modelo.php");
-    //     $consulta = Modelo::sqlActuCate($id,$categoriaN);
-    //     if($consulta){
-
-    //     }
-    // }
-
-    public static function categorias($op){
+    public static function editarCate($des,$categoria){
+        $salida = "";
         include_once("modelo.php");
-        $consulta = Modelo::sqlCategorias($op);
-        if ($consulta->num_rows > 0) {
-            // Muestra las categorías utilizando un ciclo while
-            while ($fila = $consulta->fetch_assoc()) {
-                if($op == 1){
-                    $salida = $fila['id_producto'];
-                 }
-                 if($op == 2){
-                    $salida = $fila['categoria'];
-                 }
-            }
+        $consulta = Modelo::sqlCategorias($des,$categoria);
+        while($fila = $consulta->fetch_array()){
+            $salida .= $fila[0];
+
         }
+        return $salida;
+        
+       
     }
+    
+    public static function editarCategoria($id,$categoriaN){
+    $salida;
+    include_once("modelo.php");
+    $id = Productos::editarCate(1,$_GET['dato']);
+    $consulta = Modelo::sqlEditar($id,$categoriaN);
+    if($consulta){
+        header("location:ctroBar.php?seccion=verCate");
+    }
+    
 }
+
+}
+
+   

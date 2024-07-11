@@ -80,6 +80,7 @@ class Modelo{
 
     public static function sqlCategorias($des,$idCate){
         include("db_fashion/cb.php");
+        $dato = "";
         if($des==1)$dato = "categoria";
         $sql = "select $dato from tb_categoria ";
         $sql .= "where id_categoria = '$idCate'";
@@ -88,11 +89,33 @@ class Modelo{
 
     }
 
-    public static function sqlEditar($id,$categoriaN){
+    public static function sqlEditar($id_categoria,$categoria){
+        include_once("productos_class.php");
         include("db_fashion/cb.php");
-        $sql = "update tb_categoria  set categoria = '$categoriaN' ";
-        $sql .= "where id_categoria = '$id' ";
+        $sql = "update tb_categoria  set categoria = '$categoria' ";
+        $sql .= "where id_categoria = '$id_categoria' ";
         return $resultado = $conexion->query($sql);
     }
 
+
+    public static function sqlEliminarUser($id){
+        include("db_fashion(cb.php");
+        $sql = "delete from tb_usuarios ";
+        $sql .= "where documento = '$id'";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlActuPro($des,$idPro){
+        include("db_fashion/cb.php");
+        $dato = 0;
+        if($des==1)$dato= "id_producto";
+        if($des==2)$dato = "nombre_producto";
+        if($des==3)$dato = "precio";
+        if($des==4)$dato = "cantidad";
+        if($des==5)$dato = "detalles";
+        if($des==6)$dato = "imagen";
+        $sql = "select $dato from tb_productos ";
+        $sql .= "where id_producto = '$idPro'";
+        return $resultado = $conexion->query($sql);
+    }
 }

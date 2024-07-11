@@ -10,6 +10,22 @@
     margin-bottom: 5px;
 }
 
+.my-rounded-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Esto hace que el botón sea redondo */
+    cursor: pointer;
+  }
+  
+  .my-rounded-button:hover {
+    background-color: #45a049;
+  }
+  
+  .my-rounded-button:active {
+    background-color: #3e8e41;
+  }
   
   
   

@@ -15,7 +15,7 @@ if(isset($_GET['crear'])){
     }
 }
 
-//esto es para categoria
+//esto es para agregar una categoria
 if(isset($_GET['agreCate'])){
     $id_categoria = $_POST['id_categoria'];
     $categoria = $_POST['categoria'];
@@ -41,9 +41,18 @@ if(isset($_GET['idProEliminar'])){
     }
 }
 
-//Acualizar categoria
+//Actualizar categoria
 if(isset($_GET['ediCate'])){
     $categoria = $_POST['categoria'];
     $id_categoria = $_GET['dato'];
-    Productos::editarCategoria($id,$categoriaN);
+    if(Productos::editarCategoria($id_categoria,$categoria)==1){
+        header("location:ctroBar.php?seccion=verCate");
+    }
+}
+
+if(isset($_GET['bou'])){
+    $id = $_POST['documento'];
+    if(Productos::eliminarUser($id)==1){
+        header("location:login.php");
+    }
 }

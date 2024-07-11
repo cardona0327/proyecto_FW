@@ -15,24 +15,23 @@ class Productos{
                 $salida .=  "Cantidad: " . $fila['cantidad'] . "<br>";
                 $salida .=  "Detalles: " . $fila['detalles'] . "<br>";
                 $salida .=  "Imagen: <br>";
-    
                 // Verificar si la ruta de la imagen no está vacía
                 if (!empty($fila['imagen'])) {
                     // Construir la ruta relativa de la imagen
                     $rutaImagen = "../imagenes/" . $fila['imagen'];
                     
                     // Mostrar la imagen
-                    $salida .= '<img src="'.$rutaImagen.'" alt="Imagen" class="producto-imagen"><br>';
+                    $salida .= '<img src="'.$rutaImagen.'" alt="Imagen" class="producto-imagen"><br><br>';
                 } else {
                     $salida .= "No se encontró ninguna imagen para este producto.<br>";
                 }
-    
+                // Agregar el botón
+                $salida .= "<a href='ctroBar.php?seccion=editarPro' class='btn btn-success'>Editar</a>";;
                 $salida .= '</div>';
             }
         } else {
             $salida .= "No se encontraron productos.";
         }
-    
         $salida .= '</div>';
         return $salida;
     }
@@ -121,17 +120,25 @@ class Productos{
        
     }
     
-    public static function editarCategoria($id,$categoriaN){
-    $salida;
-    include_once("modelo.php");
-    $id = Productos::editarCate(1,$_GET['dato']);
-    $consulta = Modelo::sqlEditar($id,$categoriaN);
-    if($consulta){
-        header("location:ctroBar.php?seccion=verCate");
+    public static function editarCategoria($id_categoria,$categoria){
+        include_once("modelo.php");
+        $salida = 0;
+        $consulta = Modelo::sqlEditar($id_categoria,$categoria);
+        if($consulta){
+            $salida = 1;
+        }
+        return $salida;
     }
-    
-}
 
+    public static function EliminarUser($id){
+        include_once("modelo.php");
+        $salida = 0;
+        $consulta = Modelo::sqlEliminarUser($id);
+        if($consulta){
+            $salida = 1;
+        }
+        return $salida;
+    }
 }
 
    

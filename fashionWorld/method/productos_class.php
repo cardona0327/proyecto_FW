@@ -26,7 +26,7 @@ class Productos{
                     $salida .= "No se encontró ninguna imagen para este producto.<br>";
                 }
                 // Agregar el botón
-                $salida .= "<a href='ctroBar.php?seccion=editarPro' class='btn btn-success'>Editar</a>";;
+                $salida .= "<a href='ctroBar.php?dato=".$fila['id_producto']."&seccion=editarPro' class='btn btn-success'>Editar</a>";
                 $salida .= '</div>';
             }
         } else {
@@ -134,6 +134,26 @@ class Productos{
         include_once("modelo.php");
         $salida = 0;
         $consulta = Modelo::sqlEliminarUser($id);
+        if($consulta){
+            $salida = 1;
+        }
+        return $salida;
+    }
+
+    public static function datoPro($des,$idPro){
+        include_once("modelo.php");
+        $salida = "";
+        $consulta = Modelo::sqlDatoPro($des,$idPro);
+        while($fila = $consulta->fetch_array()){
+            $salida .= $fila[0];
+        }
+        return $salida; 
+    }
+
+    public static function editarProducto($id_producto,$nombre,$precio,$cantidad,$detalles,$imagen){
+        include_once("modelo.php");
+        $salida = 0;
+        $consulta = Modelo::sqlEditarPro($id_producto,$nombre,$precio,$cantidad,$detalles,$imagen);
         if($consulta){
             $salida = 1;
         }

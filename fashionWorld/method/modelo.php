@@ -99,23 +99,31 @@ class Modelo{
 
 
     public static function sqlEliminarUser($id){
-        include("db_fashion(cb.php");
+        include("db_fashion/cb.php");
         $sql = "delete from tb_usuarios ";
         $sql .= "where documento = '$id'";
         return $resultado = $conexion->query($sql);
     }
 
-    public static function sqlActuPro($des,$idPro){
+    public static function sqlDatoPro($des,$idPro){
         include("db_fashion/cb.php");
         $dato = 0;
-        if($des==1)$dato= "id_producto";
-        if($des==2)$dato = "nombre_producto";
-        if($des==3)$dato = "precio";
-        if($des==4)$dato = "cantidad";
-        if($des==5)$dato = "detalles";
-        if($des==6)$dato = "imagen";
+        if($des==1)$dato = "nombre_producto";
+        if($des==2)$dato = "precio";
+        if($des==3)$dato = "cantidad";
+        if($des==4)$dato = "detalles";
+        if($des==5)$dato = "imagen";
         $sql = "select $dato from tb_productos ";
         $sql .= "where id_producto = '$idPro'";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlEditarPro($id_producto,$nombre,$precio,$cantidad,$detalles,$imagen){
+        include("db_fashion/cb.php");
+        include_once("productos_class.php");
+        $sql = "update tb_productos ";
+        $sql .= "set nombre_producto = '$nombre', precio = '$precio', cantidad= '$cantidad', detalles = '$detalles', imagen = '$imagen' ";
+        $sql .= "where id_producto = '$id_producto'";
         return $resultado = $conexion->query($sql);
     }
 }

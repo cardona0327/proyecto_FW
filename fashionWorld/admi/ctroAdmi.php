@@ -56,3 +56,16 @@ if(isset($_GET['bou'])){
         header("location:login.php");
     }
 }
+
+if(isset($_GET['ediPro'])){
+    $id_producto = $_GET['dato'];
+    $nombre = $_POST['nombre'];
+    $precio = $_POST['precio'];
+    $cantidad = $_POST['cantidad'];
+    $detalles = $_POST['detalles'];
+    $imagen = $_FILES['imagen'];
+    if(Productos::editarProducto($id_producto,$nombre,$precio,$cantidad,$detalles,$imagen)==1){
+        header("location:ctroBar.php?seccion=verPro");
+    }
+
+}

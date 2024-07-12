@@ -37,9 +37,11 @@ class Usuarios{
 
     public static function eliminarCuentaUser($id){
         include_once("modelo.php");
-        
-    
-        $salida .= "</div>"; 
+        $salida = 0;
+        $consulta = Modelo::sqlEliminarUser($id);
+        if($consulta){
+            $salida = 1;
+        }
         return $salida;
     }
     

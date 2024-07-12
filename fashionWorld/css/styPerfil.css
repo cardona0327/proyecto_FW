@@ -10,7 +10,7 @@
     margin-bottom: 5px;
 }
 
-.my-rounded-button {
+#holi{
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -19,11 +19,11 @@
     cursor: pointer;
   }
   
-  .my-rounded-button:hover {
+  #holi:hover {
     background-color: #45a049;
   }
   
-  .my-rounded-button:active {
+  #holi:active {
     background-color: #3e8e41;
   }
   

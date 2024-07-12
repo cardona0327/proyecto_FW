@@ -35,3 +35,28 @@ public static function mostrarPro() {
     $salida .= '</div>';
     return $salida;
 }
+
+
+//hoy 
+
+if (isset($_GET['ediPro'])) {
+    $id_producto = $_GET['dato'];
+    $nombre = $_POST['nombre'];
+    $precio = $_POST['precio'];
+    $cantidad = $_POST['cantidad'];
+    $detalles = $_POST['detalles'];
+
+    // Procesar la imagen
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        $ruta_imagen = 'img/productos/' . $_FILES['imagen']['name'];
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_imagen);
+        // Actualizar la ruta de la imagen en la base de datos
+        Productos::editarProducto($id_producto, $nombre, $precio, $cantidad, $detalles, $ruta_imagen);
+    } else {
+        // No se subió una nueva imagen, actualizar otros campos sin cambios en la imagen
+        Productos::editarProducto($id_producto, $nombre, $precio, $cantidad, $detalles, null);
+    }
+
+    header("location:ctroBar.php?seccion=verPro");
+}
+

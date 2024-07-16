@@ -1,7 +1,7 @@
 
+<div class="mostrarPro" id="mostrarPro">
 <?php 
-
-include("../method/productos_class.php");
-echo Productos::mostrarPro();
+    echo Productos::mostrarPro();
 ?>
+</div>
 

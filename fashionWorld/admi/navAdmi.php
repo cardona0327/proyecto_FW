@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styMostrarCate.css">
     <link rel="stylesheet" type="text/css" href="../css/styPerfil.css">
     <link rel="stylesheet" type="text/css" href="../css/botonPer.css">
+    <link rel="stylesheet" type="text/css" href="../css/styInfo.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -52,6 +53,7 @@
         </li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">regresar</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=perfilAdmi">Perfil</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=infoAdmi">información</a></li>
 
       </ul>
     </div>

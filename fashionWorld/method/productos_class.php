@@ -1,11 +1,11 @@
 <?php
 class Productos{
 
-    public static function mostrarPro() {
+    public static function mostrarPro($buscar=null) {
         include_once("modelo.php");
         $salida = "";
         $salida .= '<div class="productos-container">';
-        $consulta = Modelo::sqlMostrarPro();
+        $consulta = Modelo::sqlMostrarPro($buscar);
         if ($consulta->num_rows > 0) {
             while($fila = $consulta->fetch_assoc()) {
                 $salida .= '<div class="producto">';
@@ -154,6 +154,16 @@ class Productos{
         include_once("modelo.php");
         $salida = 0;
         $consulta = Modelo::sqlEditarPro($id_producto,$nombre,$precio,$cantidad,$detalles,$imagen);
+        if($consulta){
+            $salida = 1;
+        }
+        return $salida;
+    }
+
+    public static function buscarPro($nombre){
+        include_once("modelo.php");
+        $salida = 0;
+        $consulta = Modelo::sqlBuscarPro($nombre);
         if($consulta){
             $salida = 1;
         }

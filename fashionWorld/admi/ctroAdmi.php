@@ -69,3 +69,9 @@ if(isset($_GET['ediPro'])){
     }
 
 }
+
+if(isset($_GET['eli'])){
+    if(Productos::infoRe()==1){
+        header("location:ctroBar.php?seccion=infoReg");
+    }
+}

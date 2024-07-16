@@ -1,5 +1,6 @@
 <?php
 include_once("../method/usuarios_class.php");
+include_once("../method/productos_class.php");
 if(!isset($_SESSION))session_start();
 if(!isset($_SESSION['id'])){
     header("location: ../index.php");
@@ -17,5 +18,8 @@ if($seccion=="cerrarSe"){
     setcookie(session_name(), "", time()-3600, "/");
     header("location:../index.php");
 }
+
+
+
 include("navUser.php");
 

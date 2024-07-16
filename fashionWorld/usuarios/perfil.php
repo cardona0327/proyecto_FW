@@ -12,7 +12,7 @@ echo Usuarios::perfilUsuario($_SESSION['id']);
     <li><a class="dropdown-item" href="#">Another action</a></li>
     <li><a class="dropdown-item" href="#">Something else here</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="conBaBus.php?seccion=ctroUser">elimina tu cuenta</a></li>
+    <li><a class="dropdown-item" href="conBaBus.php?eliCuenta=true&seccion=ctroUser">elimina tu cuenta</a></li>
   </ul>
 
 </div>

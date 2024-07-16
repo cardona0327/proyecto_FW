@@ -40,9 +40,10 @@ class Modelo{
         return $resultado = $conexion->query($sql); 
     }
 
-    public static function sqlMostrarPro() {
+    public static function sqlMostrarPro($buscar=null) {
         include("db_fashion/cb.php");
-        $sql = "SELECT id_producto, nombre_producto, precio, cantidad, detalles, imagen FROM tb_productos";
+        $sql = "select * from tb_productos ";
+        $sql .= "where nombre_producto  like'%$buscar%'";   
         return $resultado = $conexion->query($sql);
         
     }
@@ -59,12 +60,8 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
     
-    public static function sqlBuscarPro($nombre){
-        include("db_fashion/cb.php");
-        $sql = "select * from tb_productos ";
-        $sql .= "where nombre_producto like '%a%'";
-        return $resultado = $conexion->query($sql);
-    }
+    
+ 
     public static function sqlEliminarPro($id) {
         include("db_fashion/cb.php");
         $sql = "DELETE FROM tb_productos WHERE id_producto = '$id'";
@@ -124,6 +121,13 @@ class Modelo{
         $sql = "update tb_productos ";
         $sql .= "set nombre_producto = '$nombre', precio = '$precio', cantidad= '$cantidad', detalles = '$detalles', imagen = '$imagen' ";
         $sql .= "where id_producto = '$id_producto'";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlBuscarPro($nombre){
+        include("db_fashion/cb.php");
+        $sql = "select * from tb_productos ";
+        $sql .= "where nombre_producto  like'%$nombre%'";
         return $resultado = $conexion->query($sql);
     }
 }

@@ -53,8 +53,8 @@
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://www.sena.edu.co" target="blank">Ir al Sena</a></li>
         </ul>
         <form id="formulario"class="d-flex ms-auto">
-          <input id="nombre" class="form-control me-2" type="search" placeholder="producto" aria-label="Search">
-          <button id="enviar" class="btn btn-outline-success" type="button" >Buscar</button>
+          <input id="nombrePro" class="form-control me-2" type="search" placeholder="producto" aria-label="Search">
+          <button id="enviar" class="btn btn-outline-success" type="button" onclick="buscador()">Buscar</button>
         </form>
       </ul>
     </div>
@@ -83,7 +83,8 @@
 
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="../js/ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/ajaxBusca.js"></script>
    
   </body>
 </html>

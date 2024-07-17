@@ -169,6 +169,22 @@ class Productos{
         }
         return $salida;
     }
+
+    public static function mostrarConteoEli(){
+        include_once("modelo.php");
+        $salida = "<table class='conteo-table'>";
+        $consulta = Modelo::sqlConteoEli();
+        while($fila= $consulta->fetch_assoc()){
+            $salida .= "<tr>"; 
+            $salida .= "<td>" .$fila['id_conteo']. "</td>";
+            $salida .= "<td>" .$fila['descripcion']. "</td>";
+            $salida .= "<td>" .$fila['conteo']. "</td>";
+            $salida .= "<td>" .$fila['fec_eli']. "</td>";
+            $salida .= "</tr>";
+        }
+        $salida .= "</table>";
+        return $salida; 
+    }
+    
 }
 
-   

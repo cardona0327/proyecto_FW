@@ -124,10 +124,10 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
 
-    public static function sqlBuscarPro($nombre){
+    public static function sqlConteoEli(){
         include("db_fashion/cb.php");
-        $sql = "select * from tb_productos ";
-        $sql .= "where nombre_producto  like'%$nombre%'";
+        $sql = "select * from tb_conteo ";
         return $resultado = $conexion->query($sql);
     }
+    
 }

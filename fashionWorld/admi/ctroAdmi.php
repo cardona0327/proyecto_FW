@@ -74,3 +74,7 @@ if(isset($_GET['eli'])){
     header("location:ctroBar.php?seccion=verConteoEli");
         
 }
+
+if(isset($_GET['reg'])){
+    header("location:ctroBar.php?seccion=verConteoReg");
+}

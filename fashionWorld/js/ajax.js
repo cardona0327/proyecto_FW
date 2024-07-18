@@ -13,9 +13,11 @@ function eliminarPro(){
             if(respuesta===0){
                 Swal.fire({
                     icon: "error",
-                    title: "error",
-                    text: "no se encontró",
-                  }) 
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                  });
+                    
             }else{
                 document.getElementById('productos').innerHTML = respuesta;
             }
@@ -32,3 +34,6 @@ function eliminarPro(){
   
 
 
+
+  
+    

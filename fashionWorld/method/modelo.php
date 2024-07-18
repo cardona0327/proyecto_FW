@@ -129,5 +129,11 @@ class Modelo{
         $sql = "select * from tb_conteo ";
         return $resultado = $conexion->query($sql);
     }
+    public static function sqlConteoReg(){
+        include("db_fashion/cb.php");
+        $sql = "select * from tb_conteo_reg ";
+        return $resultado = $conexion->query($sql);
+    }
+   
     
 }

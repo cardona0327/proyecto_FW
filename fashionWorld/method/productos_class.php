@@ -172,7 +172,7 @@ class Productos{
 
     public static function mostrarConteoEli(){
         include_once("modelo.php");
-        $salida = "<table class='conteo-table'>";
+        $salida = "<br><br><table class='conteo-table'>";
         $consulta = Modelo::sqlConteoEli();
         while($fila= $consulta->fetch_assoc()){
             $salida .= "<tr>"; 
@@ -188,7 +188,7 @@ class Productos{
 
     public static function mostrarConteoReg(){
         include_once("modelo.php");
-        $salida = "<table class='conteo-table'>";
+        $salida = "<br><br><table class='conteo-table'>";
         $consulta = Modelo::sqlConteoReg();
         while($fila= $consulta->fetch_assoc()){
             $salida .= "<tr>"; 
@@ -201,6 +201,24 @@ class Productos{
         }
         $salida .= "</table>";
         return $salida; 
+    }
+
+    public static function mostrarConteoProductos(){
+        include_once("modelo.php");
+        $salida = "";
+        $salida = "<br><br><table class='conteo-table'>";
+        $consulta = Modelo::sqlConteoPro();
+        while($fila = $consulta->fetch_assoc()){
+            $salida .= "<tr>"; 
+            $salida .= "<td>" .$fila['id_conteo']. "</td>";
+            $salida .= "<td>" .$fila['descripcion']. "</td>";
+            $salida .= "<td>" .$fila['docPro']. "</td>";
+            $salida .= "<td>" .$fila['conteo']. "</td>";
+            $salida .= "<td>" .$fila['fec_eli']. "</td>";
+            $salida .= "</tr>";
+        }
+        $salida .= "</table>";
+        return $salida;
     }
     
 }

@@ -78,3 +78,6 @@ if(isset($_GET['eli'])){
 if(isset($_GET['reg'])){
     header("location:ctroBar.php?seccion=verConteoReg");
 }
+if(isset($_GET['producto'])){
+    header("location:ctroBar.php?seccion=verConteoProductos");
+}

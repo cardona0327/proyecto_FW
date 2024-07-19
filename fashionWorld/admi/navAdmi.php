@@ -54,7 +54,15 @@
         </li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">regresar</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=perfilAdmi">Perfil</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=infoAdmi">información</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Información
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="ctroBar.php?seccion=infoAdmi">Info usuarios</a></li>
+            <li><a class="dropdown-item" href="ctroBar.php?seccion=infoAdmiPro">Info productos</a></li>
+          </ul>
+        </li>
 
       </ul>
     </div>

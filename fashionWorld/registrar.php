@@ -30,6 +30,8 @@
                 <input type="text" name="contraseña" placeholder="contraseña"><br><br>
                 <input type="date" name="fecha" placeholder="Fecha de nacimiento"><br><br>
                 <input type="submit">
+                <a href="politicaPri.php">Política de privacidad</a><br>
+                <a href="usuarios/terminosCon.php">Terminos y condisiones</a><br><br>
                 <center><a href="login.php">inicia sesión</a></center>
             </form>
         </div>

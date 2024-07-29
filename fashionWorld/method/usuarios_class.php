@@ -20,20 +20,29 @@ class Usuarios{
     public static function perfilUsuario($id){
         include_once("modelo.php");
         $salida = "<div class='perfil-container'>";
-    
+        
         $consulta = Modelo::sqlPerfil($id);
         while($fila = $consulta->fetch_assoc()){
-            $salida .= "<div class='perfil-item'> Documento: " . $fila['documento'] . "</div>";
-            $salida .= "<div class='perfil-item'> Nombre: " . $fila['nombre'] . "</div>";
-            $salida .= "<div class='perfil-item'> Apellido: " . $fila['apellido'] . "</div>";
-            $salida .= "<div class='perfil-item'>Correo: " . $fila['correo'] . "</div>";
-            $salida .= "<div class='perfil-item'>Contraseña: " . $fila['contraseña'] . "</div>";
-            $salida .= "<div class='perfil-item'>Fecha de nacimiento: " . $fila['fecha'] . "</div>";
+            $salida .= "<div class='perfil-foto-container'>";
+            $foto = !empty($fila['foto']) ? $fila['foto'] : '../imagenes/user.webp';
+            $salida .= "<img src='" . $foto . "' alt='Foto de perfil' class='perfil-foto'>";
+            $salida .= "<input type='submit' value='Actualizar Perfil'>";
+            $salida .= "</div>";
+            $salida .= "<div class='perfil-datos'>";
+            $salida .= "<div class='perfil-item'><span>Documento:</span> " . $fila['documento'] . "</div>";
+            $salida .= "<div class='perfil-item'><span>Nombre:</span> " . $fila['nombre'] . "</div>";
+            $salida .= "<div class='perfil-item'><span>Apellido:</span> " . $fila['apellido'] . "</div>";
+            $salida .= "<div class='perfil-item'><span>Correo:</span> " . $fila['correo'] . "</div>";
+            $salida .= "<div class='perfil-item'><span>Contraseña:</span> " . $fila['contraseña'] . "</div>";
+            $salida .= "<div class='perfil-item'><span>Fecha de nacimiento:</span> " . $fila['fecha'] . "</div>";
+            $salida .= "<input type='submit' value='actualizar datos'>";
+            $salida .= "</div>";
         }
-    
+        
         $salida .= "</div>"; 
         return $salida;
     }
+    
 
     public static function eliminarCuentaUser($id){
         include_once("modelo.php");
@@ -44,5 +53,19 @@ class Usuarios{
         }
         return $salida;
     }
+
+    public static function buscarId($email){
+        include_once("modelo.php");
+        $consulta = Modelo::sqlBuscarId($email);
+        if($consulta && $consulta->num_rows > 0) {
+            return 1; // Se encontró un registro válido
+        } else {
+            return 0; // No se encontró ningún registro
+        }
+    }
     
+    
+    
+    
+
 }

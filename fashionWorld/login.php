@@ -45,7 +45,7 @@ if(isset($_SESSION['bloqueado_hasta']) && $_SESSION['bloqueado_hasta'] > time())
                 <input type="number" name="documento" placeholder="Usuario" required><br><br>
                 <input type="password" name="contraseña" placeholder="Contraseña" required><br><br>
                 <input type="submit" value="Ingresar"><br>
-                <center><a href="">olvidaste tu contraseña?</a></center>
+                <center><a href="recuperarContraseña.php">olvidaste tu contraseña?</a></center>
                 <center><a href="registrar.php">Registrarse</a></center>
             </form>
         </div>

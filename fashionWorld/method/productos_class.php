@@ -220,6 +220,23 @@ class Productos{
         $salida .= "</table>";
         return $salida;
     }
-    
+
+    public static function buscarUsuario($des,$busqueda){
+        include_once("modelo.php");
+        $salida = "";
+        $consulta = Modelo::sqlBuscarUser($des,$busqueda);
+        if($consulta->num_rows > 0){
+            while($fila = $consulta->fetch_assoc()){
+                $salida .= $fila['nombre'];
+                $salida .= $fila['apellido'];
+                $salida .= $fila['correo'];
+                $salida .= $fila['fecha'];
+            }
+        
+        }else{
+            $salida .= "no se encontró ningun usuario con esta busqueda";
+        }
+        return $salida;
+    }
 }
 

@@ -139,6 +139,52 @@ class Modelo{
         $sql = "select * from tb_conteo_productos";
         return $resultado = $conexion->query($sql);
     }
+    public static function sqlCambiarCo($contraseñaN){
+        include("db_fashion/cb.php");
+        $sql = "update tb_usuarios set contraseña = '$contraseñaN'";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function actuUser($nombre,$apellido,$correo,$contraseña,$fecha,$foto){
+        include("db_fashion/cb.php");
+        $sql = "update tb_usuarios set nombre = '$nombre', apellido = '$apellido', ";
+        $sql .= "correo = '$correo', contraseña = '$contraseña', fecha = '$fecha', foto = '$foto'";
+        return $consulta = $conexion->query($sql);
+    }
+
+
+    public static function sqlBuscarId($email){
+        include("db_fashion/cb.php");
+        $sql = "select * from tb_usuarios ";
+        $sql .= "where correo = '$email'";
+        return $resultado = $conexion->query($sql);
+    }
    
+    public static function sqlBuscarUser($des,$busqueda){
+        include("db_fashion/cb.php");
+        if($des==1)$dato = "documento";
+        if($des==2)$dato = "nombre";
+        if($des==3)$dato = "correo";
+        $sql = "select * from tb_usuarios where $dato = '$busqueda'"  ;
+        echo $sql;
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlCambiarClave($nuevaClave,$id){
+        include("db_fashion/cb.php");
+        $sql = "update tb_usuarios set contraseña = '$nuevaClave' ";
+        $sql .= "where documento = '$id'";
+        return $resultado = $conexion->query($sql);
+    }
+    public static function buscarDatosUser($des,$id){
+        include("db_fashion/cb.php");
+        if($des==1)$dato = "nombre";
+        if($des==2)$dato = "apellido";
+        if($des==3)$dato = "correo";
+        if($des==4)$dato = "fecha";
+        $sql = "select $dato from tb_usuarios "
+        $sql .= "where documento = '$id'";
+        return $resultado = $conexion->query($sql);
+    }
     
 }

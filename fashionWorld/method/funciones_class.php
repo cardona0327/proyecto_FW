@@ -2,7 +2,7 @@
 
 class HtmlGenerator {
     // Método estático para generar el HTML
-    public static function createEmailHtml($name, $message, $code) {
+    public static function createEmailHtml($name, $message, $dato) {
         $html = "
             <!DOCTYPE html>
             <html lang='es'>
@@ -18,12 +18,13 @@ class HtmlGenerator {
             </head>
             <body>
                 <div class='container'>
-                    <h1>Hola, $name!</h1>
+                    <h1>Hola, $name!</h1>   
                     <div class='message'>
                         <p>$message</p>
                     </div>
                     <div class='code'>
-                        <p>ingresa esta nueva contraseña: $code</p>
+                        <p>Ingresa esta nueva contraseña: $dato</p>
+                        <a href='localhost/fashionWorld/cambioClave.php'>dale click</a>
                     </div>
                 </div>
             </body>

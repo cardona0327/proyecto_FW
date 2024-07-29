@@ -36,5 +36,11 @@ if(isset($_GET['recorrido'])){
             echo "no se ha registrado";
         }
     }
+
+
+    if($_GET['recorrido']==3){
+        
+
+    }
 }
 

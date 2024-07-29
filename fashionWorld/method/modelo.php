@@ -176,15 +176,31 @@ class Modelo{
         $sql .= "where documento = '$id'";
         return $resultado = $conexion->query($sql);
     }
-    public static function buscarDatosUser($des,$id){
+    public static function buscarDatosUser($des, $id) {
         include("db_fashion/cb.php");
-        if($des==1)$dato = "nombre";
-        if($des==2)$dato = "apellido";
-        if($des==3)$dato = "correo";
-        if($des==4)$dato = "fecha";
-        $sql = "select $dato from tb_usuarios "
-        $sql .= "where documento = '$id'";
+        $salida = "";
+        if ($des == 1) $dato = "nombre";
+        if ($des == 2) $dato = "apellido";
+        if ($des == 3) $dato = "correo";
+        if ($des == 4) $dato = "fecha";
+    
+        $sql = "SELECT $dato FROM tb_usuarios WHERE documento = '$id'";
+        $resultado = $conexion->query($sql);
+
+        while($fila = $resultado->fetch_array()){
+            $salida = $fila[0];
+        }
+        return $salida;
+    }
+    
+    public static function verficaClave($contraseñaN){
+        include("db_fashion/cb.php");
+        $salida = "";
+        $sql = "select documento from tb_usuarios ";
+        $sql .= "WHERE  contraseña = '$contraseñaN'";
         return $resultado = $conexion->query($sql);
     }
     
+
+
 }

@@ -56,13 +56,14 @@ class Usuarios{
 
     public static function buscarId($email){
         include_once("modelo.php");
+        $salida = "";
         $consulta = Modelo::sqlBuscarId($email);
-        if($consulta && $consulta->num_rows > 0) {
-            return 1; // Se encontró un registro válido
-        } else {
-            return 0; // No se encontró ningún registro
+        while($fila = $consulta->fetch_array()){
+            $salida = $fila[0];
         }
+        return $salida;
     }
+
     
     
     

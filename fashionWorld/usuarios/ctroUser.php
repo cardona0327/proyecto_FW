@@ -3,6 +3,8 @@ include_once("../method/usuarios_class.php");
 include_once("../method/productos_class.php");
 include_once("../method/token_class.php");
 include_once("../method/correo_class.php");
+include_once("../method/modelo.php");
+include_once("../method/encrip_class.php");
 
 
 if(isset($_GET['eliCuenta'])){
@@ -30,10 +32,24 @@ if (isset($_GET['recuperar'])) {
 }
 
 if(isset($_GET['cambioCo'])){
-    $nuevaClave = $_POST['nuevaClave'];
-    
-    if(Modelo::verficaClave($contraseñaN)){
-        header("location::conBaBus.php");
+    if(isset($_POST['nuevaClave']) && isset($_POST['newPassword'])){
+        $contraseñaN = $_POST['nuevaClave'];
+        $contraseñaUser = $_POST['newPassword'];
+        $doc = EncriptarURl::desencriptar($_GET['codigo']);
+        
+        if(Usuarios::verificaCon($contraseñaN,$doc)==0){
+            echo "la contraseña no coincide";
+        }else{
+            if( Modelo::sqlCambiarClave($contraseñaUser,$doc)){
+                header("location:../login.php");
+            }
+           
+        }
+        
+        // if(Modelo::verficaClave($contraseñaN)){ 
+        //     header("location: conBaBus.php");
+        //     exit; // Agrega esta línea para evitar problemas con la redirección
+        // }
     }
 }
 

@@ -37,10 +37,5 @@ if(isset($_GET['recorrido'])){
         }
     }
 
-
-    if($_GET['recorrido']==3){
-        
-
-    }
 }
 

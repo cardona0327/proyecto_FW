@@ -179,6 +179,8 @@ class Modelo{
     public static function buscarDatosUser($des, $id) {
         include("db_fashion/cb.php");
         $salida = "";
+        $dato = ""; // Define la variable $dato
+    
         if ($des == 1) $dato = "nombre";
         if ($des == 2) $dato = "apellido";
         if ($des == 3) $dato = "correo";
@@ -186,21 +188,25 @@ class Modelo{
     
         $sql = "SELECT $dato FROM tb_usuarios WHERE documento = '$id'";
         $resultado = $conexion->query($sql);
-
-        while($fila = $resultado->fetch_array()){
+    
+        while ($fila = $resultado->fetch_array()) {
             $salida = $fila[0];
         }
         return $salida;
     }
     
-    public static function verficaClave($contraseñaN){
+    public static function verficaClave($contraseñaN,$doc){
         include("db_fashion/cb.php");
-        $salida = "";
-        $sql = "select documento from tb_usuarios ";
-        $sql .= "WHERE  contraseña = '$contraseñaN'";
+        $sql = "select count(*) from tb_usuarios ";
+        $sql .= "WHERE  contraseña = '$contraseñaN' and documento = '$doc'";
         return $resultado = $conexion->query($sql);
     }
     
+    public static function sqlMostrarUser($buscaUser = Null){
+        include("db_fashion/cb.php");
+        $sql = "select * from tb_usuarios";
+        return $resultado = $conexion->query($sql);
+    }
 
 
 }

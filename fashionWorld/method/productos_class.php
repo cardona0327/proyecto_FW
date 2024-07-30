@@ -221,22 +221,47 @@ class Productos{
         return $salida;
     }
 
-    public static function buscarUsuario($des,$busqueda){
+    public static function buscarUsuario($des, $busqueda) {
         include_once("modelo.php");
         $salida = "";
-        $consulta = Modelo::sqlBuscarUser($des,$busqueda);
-        if($consulta->num_rows > 0){
-            while($fila = $consulta->fetch_assoc()){
-                $salida .= $fila['nombre'];
-                $salida .= $fila['apellido'];
-                $salida .= $fila['correo'];
-                $salida .= $fila['fecha'];
+        $consulta = Modelo::sqlBuscarUser($des, $busqueda);
+        if ($consulta->num_rows > 0) {
+            while ($fila = $consulta->fetch_assoc()) {
+                $salida .= $fila['nombre'] . " "; // Agrega un espacio después de cada valor
+                $salida .= $fila['apellido'] . " ";
+                $salida .= $fila['correo'] . " ";
+                $salida .= $fila['fecha'] . " ";
             }
-        
-        }else{
-            $salida .= "no se encontró ningun usuario con esta busqueda";
+        } else {
+            $salida .= "No se encontró ningún usuario con esta búsqueda";
         }
         return $salida;
     }
+
+    public static function mostrarUsuarios($buscaUser = Null){
+        include_once("modelo.php");
+        $salida = "";
+        $consulta = Modelo::sqlMostrarUser();
+    
+        while($fila = $consulta->fetch_assoc()){
+            $salida .= "<div class='usuario'>";
+            $salida .= "<img src='" . $fila['imagen'] . "' alt='Imagen de " . $fila['nombre'] . "'>";
+            $salida .= "<div>";
+            $salida .= "<p><strong>Documento:</strong> " . $fila['documento'] . "</p>";
+            $salida .= "<p><strong>Nombre:</strong> " . $fila['nombre'] . "</p>";
+            $salida .= "<p><strong>Apellido:</strong> " . $fila['apellido'] . "</p>";
+            $salida .= "<p><strong>Correo:</strong> " . $fila['correo'] . "</p>";
+            $salida .= "<p><strong>Contraseña:</strong> " . $fila['contraseña'] . "</p>";
+            $salida .= "<p><strong>Fecha:</strong> " . $fila['fecha'] . "</p>";
+            $salida .= "<p><strong>Rol:</strong> " . $fila['rol'] . "</p>";
+            $salida .= "</div>";
+            $salida .= "</div>";
+        }
+    
+        return $salida;
+    }
+    
+    
+    
 }
 

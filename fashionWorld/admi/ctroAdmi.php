@@ -81,8 +81,18 @@ if(isset($_GET['reg'])){
 if(isset($_GET['producto'])){
     header("location:ctroBar.php?seccion=verConteoProductos");
 }
-if(isset($_GET['buscarU'])){
-    $busqueda = $_POST['busqueda'];
-    echo Productos::buscarUsuario(1,$busqueda);
-   
+if (isset($_GET['buscarU']) && $_GET['buscarU'] == 'true') {
+    if (isset($_POST['busqueda'])) {
+        $busqueda = $_POST['busqueda'];
+        echo Productos::buscarUsuario(1, $busqueda);
+    } else {
+        echo "Parámetro de búsqueda no proporcionado.";
+    }
 }
+
+
+if(issset($_GET['id_buscar'])){
+    echo Productos::mostrarUsuario($_GET['id_buscar']);
+}
+    
+

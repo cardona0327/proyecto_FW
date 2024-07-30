@@ -53,10 +53,11 @@ class Correo {
             include_once("usuarios_class.php");
             include_once("funciones_class.php");
             include_once("token_class.php");
+            include_once("encrip_class.php");
             $id = Usuarios::buscarId($correo);
             $name = Modelo::buscarDatosUser(1,$id);
             $message = "esta es la clave nueva ";
-            $html = HTMLGenerator::createEmailHtml($name, $message, $dato);
+            $html = HTMLGenerator::createEmailHtml($name, $message, $dato,EncriptarURl::encriptar($id));
             Modelo::sqlCambiarClave($dato,$id);
             echo Correo::correos($correo,"Recuperar clave",$html);
 

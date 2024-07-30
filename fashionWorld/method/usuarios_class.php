@@ -64,7 +64,14 @@ class Usuarios{
         return $salida;
     }
 
-    
+    public static function verificaCon($contraseñaN,$doc){
+        include_once("modelo.php");
+        $consulta = Modelo::verficaClave($contraseñaN,$doc);
+        while($fila = $consulta->fetch_array()){
+            $salida = $fila[0];
+        }
+        return $salida;
+    }
     
     
     

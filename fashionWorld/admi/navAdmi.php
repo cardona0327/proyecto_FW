@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styPerfil.css">
     <link rel="stylesheet" type="text/css" href="../css/botonPer.css">
     <link rel="stylesheet" type="text/css" href="../css/styConteos.css">
+    <link rel="stylesheet" type="text/css" href="../css/styMostrarUser.css">
     
 
     <!-- Bootstrap CSS -->
@@ -53,6 +54,7 @@
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=busquedas">Busquedas</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=mostrarUser">Ver usuarios</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="ctroBar.php?seccion=perfilAdmi">Perfil</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -93,6 +95,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/ajax.js"></script>
     <script src="../js/ajaxCate.js"></script>
+    <script src="../js/ajaxBuscaUser.js"></script>
+    <script src="../js/ajaxBusUser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    

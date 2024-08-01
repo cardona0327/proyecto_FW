@@ -204,7 +204,8 @@ class Modelo{
     
     public static function sqlMostrarUser($buscaUser = Null){
         include("db_fashion/cb.php");
-        $sql = "select * from tb_usuarios";
+        $sql = "select * from tb_usuarios ";
+        $sql .= "where documento  like'$buscaUser%'";
         return $resultado = $conexion->query($sql);
     }
 

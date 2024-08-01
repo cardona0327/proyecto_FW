@@ -1,10 +1,10 @@
 <div class="row"><br><br>
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="nombreUser">
-      <button class="btn btn-outline-success"  onclick="buscadorUser()" >Buscar usuario</button>
-    </form>
+  <form id="formulario"class="d-flex ms-auto">
+          <input id="nombreUser" class="form-control me-2" type="search" placeholder="usuario" aria-label="Search">
+          <button id="enviar" class="btn btn-outline-success" type="button" onclick="buscadorUser()">Buscar</button>
+      </for>
   </div>
 </nav>
 

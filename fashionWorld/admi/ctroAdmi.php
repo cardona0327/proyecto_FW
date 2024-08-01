@@ -91,10 +91,6 @@ if (isset($_GET['buscarU']) && $_GET['buscarU'] == 'true') {
 }
 
 
-if(isset($_GET['IDbuscar'])){
-    echo Productos::mostrarUsuarios($_GET['IDbuscar']);
-    
-}
    
 
 

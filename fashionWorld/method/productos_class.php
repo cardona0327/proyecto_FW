@@ -259,7 +259,24 @@ class Productos{
     
         return $salida;
     }
+
+    public static function actualizaDatosUser($des,$idUser){
+        include_once("modelo.php");
+        $consulta = Modelo::sqlMostrarDaUser($des,$idUser);
+        while($fila = $consulta->fetch_array()){
+            $salida = $fila[0];
+        }
+        return $salida;
+    }
     
+    public static function actualizarUser($idUser,$nombre,$apellido,$correo,$contraseña,$fecha){
+        include_once("modelo.php");
+        $consulta = sqlActualizarUser($idUser,$nombre,$apellido,$correo,$contraseña,$fecha);
+        if($consulta){
+            $salida = 1;
+        }
+        return $salida; 
+    }
     
     
 }

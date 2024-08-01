@@ -209,5 +209,26 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
 
+    public static function sqlMostrarDaUser($des,$idUser){
+        include("db_fashion/cb.php");
+        $dato = 0;
+        if($des==1) $dato = "nombre";
+        if($des==2) $dato = "apellido";
+        if($des==3) $dato = "correo";
+        if($des==4) $dato = "contraseña";
+        if($des==5) $dato = "fecha";
+        $sql = "select $dato from tb_usuarios ";
+        $sql .= "WHERE documento = $idUser";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlActualizarUser($idUser,$nombre,$apellido,$correo,$contraseña,$fecha){
+        include("db_fashion/cb.php");
+        include_once("productos_class.php");
+        $sql = "update tb_usuarios ";
+        $sql .= "set nombre = '$nombre', apellido = '$apellido', correo = '$correo', contraseña = $contraseña, fecha = $fecha ";
+        $sql .= "WHERE docuemento = '$idUser'";
+        return $resultado = $conexion->query($sql);
+    }
 
 }

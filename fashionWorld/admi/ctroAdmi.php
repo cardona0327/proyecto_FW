@@ -95,6 +95,20 @@ if(isset($_GET['IDbuscar'])){
     
 }
 
+if(isset($_GET['ediUser'])) {
+    if(isset($_GET['dato'])) {
+        $idUser = $_GET['dato'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $correo = $_POST['correo'];
+        $contraseña = $_POST['contraseña'];
+        $fecha = $_POST['fecha'];
+        if(Productos::actualizarUser($idUser, $nombre, $apellido, $correo, $contraseña, $fecha)) {
+            header("Location: ctroBar.php?seccion=perfilAdmi");
+        }
+    }
+}
+
 
 
    

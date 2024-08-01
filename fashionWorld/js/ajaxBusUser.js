@@ -18,7 +18,7 @@ function buscadorUser() {
                     text: "Este usuario no se encuentra registrado!",
                   });
             } else {
-                document.getElementById('mostrarUser').innerHTML = respuesta;
+                document.getElementById('mostrarUsuarios').innerHTML = respuesta;
             }
         },
         error: function(xhr, status, error) {

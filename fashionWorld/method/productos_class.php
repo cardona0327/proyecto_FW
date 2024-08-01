@@ -245,7 +245,7 @@ class Productos{
     
         while($fila = $consulta->fetch_assoc()){
             $salida .= "<div class='usuario'>";
-            $salida .= "<img src='" . $fila['foto'] . "' alt='Imagen de " . $fila['nombre'] . "'>";
+            $salida .= "<img src='" . $fila['imagen'] . "' alt='Imagen de " . $fila['nombre'] . "'>";
             $salida .= "<div>";
             $salida .= "<p><strong>Documento:</strong> " . $fila['documento'] . "</p>";
             $salida .= "<p><strong>Nombre:</strong> " . $fila['nombre'] . "</p>";

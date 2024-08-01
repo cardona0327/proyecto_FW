@@ -14,5 +14,4 @@ echo Productos::mostrarUsuarios();
 ?>
 </div>
 
-
 </div>

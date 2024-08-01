@@ -251,7 +251,6 @@ class Productos{
             $salida .= "<p><strong>Nombre:</strong> " . $fila['nombre'] . "</p>";
             $salida .= "<p><strong>Apellido:</strong> " . $fila['apellido'] . "</p>";
             $salida .= "<p><strong>Correo:</strong> " . $fila['correo'] . "</p>";
-            $salida .= "<p><strong>Contraseña:</strong> " . $fila['contraseña'] . "</p>";
             $salida .= "<p><strong>Fecha:</strong> " . $fila['fecha'] . "</p>";
             $salida .= "<p><strong>Rol:</strong> " . $fila['rol'] . "</p>";
             $salida .= "</div>";

@@ -1,0 +1,11 @@
+.heart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    color: gray; /* Corazón vacío */
+}
+
+.heart-button.liked {
+    color: fuchsia; /* Corazón relleno */
+}

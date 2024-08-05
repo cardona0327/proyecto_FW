@@ -8,10 +8,11 @@
   </div>
 </nav>
 
-<div class="row" id="mostrarUsuarios">
+<div class="row" id="mostrarUser">
 <?php
 echo Productos::mostrarUsuarios();
 ?>
 </div>
+
 
 </div>

@@ -90,27 +90,24 @@ if (isset($_GET['buscarU']) && $_GET['buscarU'] == 'true') {
     }
 }
 
+
 if(isset($_GET['IDbuscar'])){
     echo Productos::mostrarUsuarios($_GET['IDbuscar']);
     
 }
 
-if(isset($_GET['ediUser'])) {
-    if(isset($_GET['dato'])) {
-        $idUser = $_GET['dato'];
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $correo = $_POST['correo'];
-        $contraseña = $_POST['contraseña'];
-        $fecha = $_POST['fecha'];
-        if(Productos::actualizarUser($idUser, $nombre, $apellido, $correo, $contraseña, $fecha)) {
-            header("Location: ctroBar.php?seccion=perfilAdmi");
-        }
+if (isset($_POST['idProducto'])) {
+    $producto_id = $_POST['idProducto'];
+    $usuario_id = $_SESSION['id']; // Asegúrate de que el usuario esté correctamente autenticado
+
+    include_once("productos_class.php");
+
+    if (Productos::agregarLike($usuario_id, $producto_id)) {
+        echo 1; // Like agregado o eliminado correctamente
+    } else {
+        echo 0; // Fallo al agregar o eliminar el like
     }
 }
-
-
-
    
 
 

@@ -5,7 +5,7 @@
 }
 
 .producto {
-    background-color: #eeeeee; /* Color de fondo para resaltar cada producto */
+    background-color: #f9f9f9; /* Color de fondo para resaltar cada producto */
     padding: 10px; /* Espacio interno alrededor de cada producto */
     border-radius: 5px; /* Bordes redondeados para cada producto */
 }

@@ -209,26 +209,39 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
 
-    public static function sqlMostrarDaUser($des,$idUser){
-        include("db_fashion/cb.php");
-        $dato = 0;
-        if($des==1) $dato = "nombre";
-        if($des==2) $dato = "apellido";
-        if($des==3) $dato = "correo";
-        if($des==4) $dato = "contraseña";
-        if($des==5) $dato = "fecha";
-        $sql = "select $dato from tb_usuarios ";
-        $sql .= "WHERE documento = $idUser";
-        return $resultado = $conexion->query($sql);
-    }
 
-    public static function sqlActualizarUser($idUser,$nombre,$apellido,$correo,$contraseña,$fecha){
-        include("db_fashion/cb.php");
+    
+    public static function sqlVerificLike($usuario_id, $producto_id) {
+        // Incluir el archivo de conexión
+        include("db_fashion/cb.php"); // Asegúrate de que `$conexion` esté definido en `cb.php`
+    
+        // Consulta para verificar el like para un producto específico
+        $sql = "SELECT COUNT(*) as count FROM tb_likes WHERE usuario_id = '$usuario_id' AND producto_id = '$producto_id'";
+        return $conexion->query($sql);
+    }
+    
+    public static function sqlAgregarLike($usuario_id, $producto_id) {
+        // Incluir el archivo de conexión
+        include("db_fashion/cb.php"); // Asegúrate de que `$conexion` esté definido en `cb.php`
         include_once("productos_class.php");
-        $sql = "update tb_usuarios ";
-        $sql .= "set nombre = '$nombre', apellido = '$apellido', correo = '$correo', contraseña = $contraseña, fecha = $fecha ";
-        $sql .= "WHERE docuemento = '$idUser'";
-        return $resultado = $conexion->query($sql);
+    
+        // Verificar si el like ya existe para ese producto
+        $likeExists = Productos::verificLike($usuario_id, $producto_id);
+    
+        if ($likeExists == 1) {
+            // Eliminar el like si ya existe
+            $operacion = "DELETE FROM tb_likes WHERE usuario_id = '$usuario_id' AND producto_id = '$producto_id'";
+        } else {
+            // Insertar un nuevo like
+            $operacion = "INSERT INTO tb_likes (producto_id, usuario_id, valor) VALUES ('$producto_id', '$usuario_id', 'like')";
+        }
+    
+        // Ejecutar la operación y devolver el resultado
+        return $conexion->query($operacion);
     }
-
 }
+
+
+
+
+

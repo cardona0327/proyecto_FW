@@ -5,6 +5,7 @@ include_once("../method/token_class.php");
 include_once("../method/correo_class.php");
 include_once("../method/modelo.php");
 include_once("../method/encrip_class.php");
+include_once("../method/controler_login.php");
 
 
 if(isset($_GET['eliCuenta'])){
@@ -52,6 +53,20 @@ if(isset($_GET['cambioCo'])){
         // }
     }
 }
+
+if(isset($_GET['like'])){
+    if(isset($_POST['idProducto'])) {
+        $producto_id = $_POST['idProducto'];
+        $usuario_id = $_SESSION['id']; // Asegúrate de que el usuario esté correctamente autenticado
+    
+        if(Productos::agregarLike($usuario_id, $producto_id)) {
+            echo 1; // Like agregado o eliminado correctamente
+        } else {
+            echo 0; // Fallo al agregar o eliminar el like
+        }
+    }
+}
+
 
 
 ?>

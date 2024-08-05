@@ -35,7 +35,7 @@ class Usuarios{
             $salida .= "<div class='perfil-item'><span>Correo:</span> " . $fila['correo'] . "</div>";
             $salida .= "<div class='perfil-item'><span>Contraseña:</span> " . $fila['contraseña'] . "</div>";
             $salida .= "<div class='perfil-item'><span>Fecha de nacimiento:</span> " . $fila['fecha'] . "</div>";
-            $salida .= "<button><a href='../admi/ctroBar.php?seccion=actuUser'>actualizar datos</a></button>";
+            $salida .= "<input type='submit' value='actualizar datos'>";
             $salida .= "</div>";
         }
         
